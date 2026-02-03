@@ -1,0 +1,87 @@
+:root {
+    /* ==== COLORS – LIGHT MODE ==== */
+
+    --header-height: 72px;
+  
+    /* Backgrounds */
+    --bg: hsl(210, 20%, 98%);        /* page background */
+    --bg-surface: hsl(0, 0%, 100%);  /* cards, header, modals */
+  
+    /* Text */
+    --text-main: hsl(215, 25%, 27%);
+    --text-muted: hsl(215, 16%, 47%);
+  
+    /* Borders / UI */
+    --border: hsl(210, 15%, 90%);
+    --input: hsl(210, 15%, 90%);
+  
+    /* Brand */
+    --primary: hsl(160, 35%, 45%);        /* dein Grün/Türkis */
+    --primary-foreground: hsl(0, 0%, 98%);
+  
+    --secondary: hsl(215, 50%, 40%);      /* dein Blau */
+    --secondary-foreground: hsl(210, 20%, 98%);
+  
+    --accent: hsl(200, 40%, 60%);         /* helleres Blau/Türkis */
+    --accent-foreground: hsl(0, 0%, 98%);
+  
+    /* Semantic */
+    --destructive: hsl(0, 84%, 60%);
+    --destructive-foreground: hsl(60, 9%, 97%);
+  
+    --success: hsl(160, 35%, 45%);
+    --warning: hsl(35, 80%, 55%);
+    --info: hsl(200, 40%, 60%);
+  
+    /* Shadows */
+    --shadow-soft: 0 2px 8px hsla(215, 25%, 27%, 0.08);
+    --shadow-medium: 0 4px 16px hsla(215, 25%, 27%, 0.12);
+  
+    /* Hero-Gradient (für Landing Hero) */
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(210, 25%, 97%) 0%,
+      hsl(200, 30%, 95%) 30%,
+      hsl(180, 25%, 96%) 70%,
+      hsl(160, 20%, 97%) 100%
+    );
+
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  
+    --fs-h1: 48px;
+    --fs-h2: 36px;
+    --fs-h3: 28px;
+    --fs-h4: 22px;
+    --fs-h5: 18px;
+    --fs-h6: 16px;
+    --fs-body: 16px;
+    --fs-small: 14px;
+
+    /* Section titles - standardized size for all homepage sections */
+    --fs-section-title: 2.5rem;          /* 40px */
+    --fs-section-title-mobile: 2rem;     /* 32px on mobile */
+  
+    --lh-heading: 1.2;
+    --lh-body: 1.6;
+  
+    /* Border radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+
+    /* Footer */
+    --footer-bg: hsl(220, 18%, 12%);                  /* dunkles Blau */
+    --footer-text: hsl(215, 20%, 85%);                /* heller Text */
+    --footer-text-muted: hsl(215, 15%, 70%);          /* grauer Text */
+    --footer-border: hsla(215, 30%, 50%, 0.25);       /* Linie oben */
+    --footer-icon-bg: hsl(220, 18%, 14%);             /* Icon-Hintergrund */
+    --footer-icon-border: hsl(220, 16%, 30%);         /* Icon Rand */
+    --footer-icon-hover-bg: var(--secondary);         /* blau */
+    --footer-icon-hover-text: var(--secondary-foreground);
+
+    --brand-instagram: #e4405f;
+    --brand-linkedin: #0a66c2;
+    --brand-youtube: #ff0000;
+    --brand-tiktok: #ffffff;
+}

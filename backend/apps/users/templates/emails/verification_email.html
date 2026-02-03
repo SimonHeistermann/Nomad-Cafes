@@ -1,0 +1,28 @@
+{% extends "emails/base_email.html" %}
+
+{% block title %}Verify your email - Nomad Cafes{% endblock %}
+
+{% block content %}
+<p>Hi {{ display_name }},</p>
+
+<p>Welcome to Nomad Cafes! Please verify your email address by clicking the button below:</p>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="{{ verification_url }}" style="display: inline-block; background-color: #2563eb; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">
+        Verify Email
+    </a>
+</div>
+
+<p style="color: #666; font-size: 14px;">
+    Or copy and paste this link into your browser:<br>
+    <a href="{{ verification_url }}" style="color: #2563eb; word-break: break-all;">{{ verification_url }}</a>
+</p>
+
+<p style="color: #666; font-size: 14px;">
+    <strong>This link will expire in 7 days.</strong>
+</p>
+
+<p style="color: #999; font-size: 13px; margin-top: 20px;">
+    If you didn't create an account with us, please ignore this email.
+</p>
+{% endblock %}

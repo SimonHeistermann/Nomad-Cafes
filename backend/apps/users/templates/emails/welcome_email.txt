@@ -1,0 +1,15 @@
+Hi {{ display_name }},
+
+Welcome to Nomad Cafes! Your email has been verified and your account is now ready.
+
+You can now:
+- Discover the best cafes for remote work
+- Save your favorite spots
+- Share reviews with the community
+
+Start exploring: {{ explore_url }}
+
+Happy cafe hopping!
+
+Best regards,
+The Nomad Cafes Team

@@ -1,0 +1,789 @@
+{
+  "common": {
+    "search": "Suchen",
+    "location": "Standort",
+    "allLocations": "Alle Standorte",
+    "loading": "Lädt...",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "cancel": "Abbrechen",
+    "save": "Speichern"
+  },
+  "featureNames": {
+    "explore": "Entdecken",
+    "account": "Konto",
+    "favorites": "Favoriten",
+    "reviews": "Bewertungen",
+    "listing": "Eintrag",
+    "home": "Startseite",
+    "login": "Anmeldung",
+    "register": "Registrierung",
+    "forgotPassword": "Passwort zurücksetzen",
+    "auth": "Authentifizierung",
+    "content": "Seiteninhalt"
+  },
+  "days": {
+    "Monday": "Montag",
+    "Tuesday": "Dienstag",
+    "Wednesday": "Mittwoch",
+    "Thursday": "Donnerstag",
+    "Friday": "Freitag",
+    "Saturday": "Samstag",
+    "Sunday": "Sonntag"
+  },
+  "categories": {
+    "outdoorCafe": "Outdoor-Café",
+    "hotelCafe": "Hotel-Café",
+    "fitnessCafe": "Fitness-Café",
+    "restaurant": "Restaurant",
+    "cafe": "Café",
+    "museumCafe": "Museums-Café",
+    "coworking": "Coworking Space",
+    "library": "Bibliothek",
+    "other": "Sonstiges"
+  },
+  "locations": {
+    "any": "Alle Standorte",
+    "bali": "Bali",
+    "lombok": "Lombok",
+    "siargao": "Siargao",
+    "chiang-mai": "Chiang Mai",
+    "lisbon": "Lissabon",
+    "bangkok": "Bangkok",
+    "ho-chi-minh": "Ho-Chi-Minh-Stadt",
+    "hanoi": "Hanoi",
+    "barcelona": "Barcelona",
+    "mexico-city": "Mexiko-Stadt",
+    "medellin": "Medellín"
+  },
+  "header": {
+    "home": "Startseite",
+    "explore": "Entdecken",
+    "about": "Über uns",
+    "account": "Konto",
+    "favorites": "Meine Favoriten",
+    "myReviews": "Meine Bewertungen",
+    "login": "Anmelden",
+    "signup": "Kostenlos registrieren",
+    "logout": "Abmelden"
+  },
+  "myReviews": {
+    "title": "Meine Bewertungen",
+    "subtitle": "Du hast {{count}} Bewertungen geschrieben",
+    "noReviews": "Du hast noch keine Bewertungen geschrieben",
+    "emptyTitle": "Noch keine Bewertungen",
+    "emptyDescription": "Teile deine Erfahrungen in Cafés, um anderen Nomaden zu helfen",
+    "exploreCafes": "Cafés entdecken",
+    "error": "Bewertungen konnten nicht geladen werden"
+  },
+  "hero": {
+    "title": "Finde deinen perfekten Workspace",
+    "subtitle": "Entdecke die besten Cafés und Coworking Spaces weltweit",
+    "eyebrow": "Arbeitsfreundliche Cafés für digitale Nomaden & Studenten",
+    "customTitle": "Finde deinen nächsten Arbeitsplatz.",
+    "customSubtitle": "Ausgewählte Cafés und Räume in {{locations}} mit schnellem WLAN, gutem Kaffee und entspannter Atmosphäre.",
+    "scrollDown": "Scrolle nach unten, um die beliebtesten Cafés in {{locations}} zu sehen.",
+    "whatPlaceholder": "Café, Coworking...",
+    "whatLabel": "Was",
+    "whatInputPlaceholder": "z.B. Café, Coworking",
+    "wherePlaceholder": "Bali, Chiang Mai...",
+    "whereLabel": "Wo",
+    "searchButton": "Workspace finden",
+    "scrollHint": "Scrollen zum Entdecken"
+  },
+  "stats": {
+    "title": "Unsere Zahlen sprechen für sich",
+    "cafesListed": "Cafés gelistet",
+    "communityReviews": "Community-Bewertungen",
+    "locationsWorldwide": "Standorte weltweit",
+    "happyNomads": "Zufriedene Nomaden"
+  },
+  "features": {
+    "title": "Warum Nomad Café?",
+    "verified": {
+      "title": "Geprüfte Informationen",
+      "description": "Alle Standorte sind von unserer Community digitaler Nomaden verifiziert"
+    },
+    "realtime": {
+      "title": "Echtzeit-Updates",
+      "description": "Erhalte aktuelle Informationen zu WLAN-Geschwindigkeit, Steckdosen und Lautstärke"
+    },
+    "community": {
+      "title": "Aktive Community",
+      "description": "Vernetze dich mit anderen Nomaden und teile deine Erfahrungen"
+    },
+    "worldwide": {
+      "title": "Weltweite Abdeckung",
+      "description": "Finde Workspaces in über 50 Städten rund um den Globus"
+    },
+    "fastWifi": {
+      "title": "Schnelles WLAN verifiziert",
+      "description": "Alle Cafés auf zuverlässige Internetgeschwindigkeit getestet"
+    },
+    "nomadHotspots": {
+      "title": "Nomaden-Hotspots",
+      "description": "Ausgewählte Standorte in Top-Städten für digitale Nomaden"
+    },
+    "realReviews": {
+      "title": "Echte Bewertungen",
+      "description": "Authentisches Feedback von Remote-Workern"
+    },
+    "saveFavorites": {
+      "title": "Favoriten speichern",
+      "description": "Markiere deine bevorzugten Workspaces"
+    }
+  },
+  "howItWorks": {
+    "title": "So funktioniert's",
+    "customTitle": "So funktioniert es",
+    "subtitle": "Finde deinen perfekten Workspace in drei einfachen Schritten",
+    "customSubtitle": "Finde deinen perfekten Workspace in 3 einfachen Schritten",
+    "step1": {
+      "title": "Suchen & Filtern",
+      "customTitle": "1. Suchen",
+      "description": "Gib deinen Standort ein und filtere nach deinen Präferenzen",
+      "customDescription": "Durchsuche Cafés nach Standort, Atmosphäre und Ausstattung"
+    },
+    "step2": {
+      "title": "Vergleichen & Bewerten",
+      "customTitle": "2. Bewerten",
+      "description": "Lies Bewertungen und vergleiche Workspace-Features",
+      "customDescription": "Lies echte Bewertungen von Nomaden und Remote-Workern"
+    },
+    "step3": {
+      "title": "Besuchen & Arbeiten",
+      "customTitle": "3. Besuchen",
+      "description": "Besuche deinen gewählten Ort und genieße einen produktiven Tag",
+      "customDescription": "Hol dir die Wegbeschreibung und fang an zu arbeiten"
+    }
+  },
+  "testimonials": {
+    "label": "Erfolgsgeschichten",
+    "customLabel": "Erfahrungsberichte",
+    "title": "Ergebnisse, die überzeugen",
+    "subtitle": "Echtes Feedback von Café-Besitzern, die mit uns zusammenarbeiten",
+    "customSubtitle": "Erfahre, wie unsere zufriedenen Nutzer über uns sprechen.",
+    "card1": {
+      "number": "230%",
+      "label": "Umsatzsteigerung",
+      "quote": "Seit der Partnerschaft mit Nomad Café hat sich unser Umsatz verdreifacht. Die Qualität der Kunden ist herausragend – sie bleiben länger und bestellen mehr.",
+      "name": "Maria Santos",
+      "role": "Inhaberin, Café Luna, Lissabon"
+    },
+    "card2": {
+      "number": "89%",
+      "label": "Tischauslastung",
+      "quote": "Wir gingen von leeren Vormittagen zu komplett ausgebucht. Digitale Nomaden haben uns über diese Plattform gefunden und sind Stammgäste geworden.",
+      "name": "James Chen",
+      "role": "Manager, Urban Grind, Bangkok"
+    },
+    "card3": {
+      "number": "5.2k",
+      "label": "Neue Kunden/Monat",
+      "quote": "Die Sichtbarkeit, die wir gewonnen haben, ist unglaublich. Unser Café ist jetzt der Anlaufpunkt für Remote-Worker in Bali.",
+      "name": "Sofia Rodriguez",
+      "role": "Gründerin, The Work Hub, Canggu"
+    },
+    "footer": {
+      "statText": "Schließe dich 500+ Café-Besitzern an, die ihr Geschäft ausbauen",
+      "customStatText": "Schließe dich 500+ Café-Besitzern an, die ihr Geschäft ausbauen",
+      "dynamicStatText": "Schließe dich {{count}}+ Café-Besitzern an, die ihr Geschäft ausbauen",
+      "rating": "4,9/5",
+      "customRating": "4,9"
+    },
+    "result1": {
+      "metric": "3X",
+      "metricLabel": "Mehr Buchungen",
+      "quote": "Seit der Partnerschaft mit Nomad Cafes haben wir einen enormen Anstieg digitaler Nomaden als Kunden gesehen. Die Plattform bringt genau die richtige Zielgruppe in unser Café.",
+      "author": "Clare Smyth",
+      "role": "Inhaberin, Core Restaurant Lissabon"
+    },
+    "result2": {
+      "metric": "85%",
+      "metricLabel": "Höhere Tischauslastung",
+      "quote": "Nomad Cafes hat uns geholfen, unser Workspace-Layout zu optimieren und Remote-Worker während ruhiger Stunden anzuziehen. Unser Nachmittagsumsatz war noch nie besser.",
+      "author": "Savannah Nguyen",
+      "role": "Café-Managerin, The Waldorf Loft"
+    },
+    "result3": {
+      "metric": "2X",
+      "metricLabel": "Mehr Stammkunden",
+      "quote": "Das Bewertungssystem und die detaillierten Workspace-Informationen schaffen Vertrauen bei Nomaden. Sie kommen einmal über die Plattform und werden zu Stammgästen.",
+      "author": "Arlene McCoy",
+      "role": "Inhaberin, Wellness Fitness Club"
+    }
+  },
+  "popularCafes": {
+    "title": "Die beliebtesten Cafés im Moment",
+    "subtitle": "Entdecke einige der beliebtesten Orte in Bali & Siargao, ausgewählt basierend auf Bewertungen und Reviews.",
+    "viewAll": "Alle Cafés ansehen"
+  },
+  "trendingLocations": {
+    "title": "Angesagte Standorte",
+    "customTitle": "Angesagte Standorte",
+    "subtitle": "Entdecke die beliebtesten Orte für digitale Nomaden",
+    "customSubtitle": "Städte und Inseln, die andere Nomaden gerade lieben.",
+    "locationCount_one": "{{count}} Standort",
+    "locationCount_other": "{{count}} Standorte",
+    "cafeCount_one": "{{count}} Café",
+    "cafeCount_other": "{{count}} Cafés"
+  },
+  "footer": {
+    "cta": {
+      "title": "Bereit, deinen perfekten Workspace zu finden?",
+      "customTitle": "Bereit, deinen perfekten Workspace zu finden?",
+      "subtitle": "Schließe dich tausenden digitaler Nomaden an, die die besten Cafés und Coworking Spaces weltweit entdecken.",
+      "customSubtitle": "Schließe dich tausenden digitaler Nomaden an, die großartige arbeitsfreundliche Cafés weltweit entdecken",
+      "exploreCafes": "Cafés entdecken",
+      "browseCafes": "Cafés durchsuchen",
+      "signupFree": "Kostenlos registrieren"
+    },
+    "resources": {
+      "title": "Ressourcen",
+      "blog": "Blog",
+      "guides": "Nomaden-Guides",
+      "cities": "Top-Städte",
+      "help": "Hilfe-Center"
+    },
+    "company": {
+      "title": "Unternehmen",
+      "about": "Über uns",
+      "aboutShort": "Über uns",
+      "howItWorks": "So funktioniert's",
+      "faq": "FAQ",
+      "terms": "Nutzungsbedingungen",
+      "careers": "Karriere",
+      "press": "Presse-Kit",
+      "contact": "Kontakt"
+    },
+    "discover": {
+      "title": "Entdecken",
+      "comingSoon": "Demnächst"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "customTitle": "Kontakt",
+      "email": "hallo@nomadcafe.com",
+      "customEmail": "hello@nomadcafes.app",
+      "phone": "+49 (555) 123-4567",
+      "customPhone": "+49 1577 2897831",
+      "address": "Digitale Straße 123, Remote City, RC 12345",
+      "customAddress": "Mutter-Teresa-Weg 6\n46325 Borken, Deutschland"
+    },
+    "copyright": "2025 Nomad Café. Alle Rechte vorbehalten.",
+    "customCopyright": "{{year}} Nomad Cafes. Alle Rechte vorbehalten.",
+    "brandName": "Nomad Café",
+    "customBrandName": "Nomad Cafes"
+  },
+  "explore": {
+    "title": "Entdecke deinen perfekten Workspace",
+    "subtitle": "Durchsuche verifizierte Cafés und Coworking Spaces",
+    "searching": "Suche läuft...",
+    "noResults": "Keine Cafés gefunden, die deinen Kriterien entsprechen",
+    "tryAdjusting": "Versuche, deine Suchfilter anzupassen",
+    "filters": {
+      "categories": "Kategorien",
+      "priceRange": "Preisklasse",
+      "features": "Features",
+      "sortBy": "Sortieren nach"
+    },
+    "showingResults": "{{count}} von {{total}} Ergebnissen angezeigt",
+    "viewMode": "Ansichtsmodus"
+  },
+  "filters": {
+    "categories": {
+      "all": "Alle Kategorien",
+      "cafe": "Café",
+      "coworking": "Coworking",
+      "restaurant": "Restaurant",
+      "hotelCafe": "Hotel-Café",
+      "library": "Bibliothek",
+      "other": "Sonstige"
+    },
+    "price": {
+      "any": "Alle Preise",
+      "budget": "$ - Günstig",
+      "moderate": "$$ - Moderat",
+      "expensive": "$$$ - Teuer",
+      "luxury": "$$$$ - Luxus"
+    },
+    "features": {
+      "any": "Alle Features",
+      "fastWifi": "Schnelles WLAN",
+      "powerOutlets": "Steckdosen",
+      "quiet": "Ruhig",
+      "outdoorSeating": "Außenbereich",
+      "petFriendly": "Haustierfreundlich",
+      "openLate": "Lange geöffnet"
+    },
+    "tags": {
+      "any": "Alle Tags",
+      "fastWifi": "Schnelles WLAN",
+      "powerOutlets": "Steckdosen",
+      "quiet": "Ruhig",
+      "goodCoffee": "Guter Kaffee",
+      "outdoorSeating": "Außenbereich",
+      "airConditioning": "Klimaanlage",
+      "petFriendly": "Haustierfreundlich",
+      "wheelchairAccessible": "Barrierefrei",
+      "openLate": "Lange geöffnet"
+    },
+    "sort": {
+      "default": "Standard",
+      "rating": "Beste Bewertung",
+      "reviews": "Meiste Bewertungen",
+      "priceLow": "Preis: Niedrig bis hoch",
+      "priceHigh": "Preis: Hoch bis niedrig"
+    },
+    "legend": {
+      "title": "Tag-Erklärungen",
+      "priceLevel": {
+        "title": "Preisklassen",
+        "description": "Preisklassen zeigen die durchschnittlichen Kosten pro Artikel:",
+        "budget": "$ = Günstig (unter 5€ pro Artikel)",
+        "moderate": "$$ = Moderat (5-10€ pro Artikel)",
+        "expensive": "$$$ = Teuer (10-20€ pro Artikel)",
+        "luxury": "$$$$ = Luxus (über 20€ pro Artikel)"
+      },
+      "wifi": {
+        "title": "WLAN-Qualität",
+        "description": "WLAN-Bewertungen basieren auf Download-/Upload-Geschwindigkeiten:",
+        "fast": "Schnelles WLAN: 25+ Mbps Download, geeignet für Videoanrufe und Streaming",
+        "strong": "Starkes WLAN: 50+ Mbps Download, exzellent für intensive Arbeit",
+        "reliable": "Zuverlässiges WLAN: Stabile Verbindung mit minimalen Unterbrechungen"
+      },
+      "disclaimer": {
+        "title": "Informationsquelle",
+        "description": "Alle Café-Informationen (Öffnungszeiten, Ausstattung, Preise) werden von den Café-Besitzern selbst bereitgestellt. Obwohl wir uns um Genauigkeit bemühen, können sich Details ändern. Wir empfehlen, wichtige Informationen direkt beim Café zu überprüfen."
+      }
+    }
+  },
+  "forms": {
+    "errors": {
+      "nameRequired": "Name ist erforderlich",
+      "emailRequired": "E-Mail ist erforderlich",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "phoneRequired": "Telefonnummer ist erforderlich",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein",
+      "messageRequired": "Nachricht ist erforderlich",
+      "messageTooShort": "Nachricht muss mindestens 10 Zeichen lang sein",
+      "reviewRequired": "Bewertungstext ist erforderlich",
+      "reviewTooShort": "Bewertung muss mindestens 10 Zeichen lang sein",
+      "ratingRequired": "Bitte bewerten Sie alle Kategorien mit mindestens 1 Stern",
+      "invalidInput": "Ungültige Eingabe erkannt"
+    }
+  },
+  "cta": {
+    "listYourCafe": "Liste dein Café oder Workspace",
+    "getStarted": "Jetzt starten",
+    "learnMore": "Mehr erfahren"
+  },
+  "cafeCard": {
+    "rating": "Bewertung",
+    "reviews": "Bewertungen",
+    "review": "Bewertung",
+    "perHour": "/Stunde",
+    "open": "Geöffnet",
+    "closed": "Geschlossen",
+    "featured": "Empfohlen",
+    "addToFavorites": "Zu Favoriten hinzufügen",
+    "removeFromFavorites": "Aus Favoriten entfernen",
+    "features": {
+      "wifi": "Schnelles WLAN",
+      "power": "Steckdosen",
+      "quiet": "Ruhig",
+      "coffee": "Guter Kaffee"
+    }
+  },
+  "openStatus": {
+    "opensAt": "Öffnet um {{time}}"
+  },
+  "submitVenue": {
+    "title": "Liste dein Café oder Workspace",
+    "description": "Bist du Café-Besitzer oder Workspace-Manager? Werde Partner und erreiche tausende digitale Nomaden und Remote-Worker, die ihren nächsten Arbeitsplatz suchen.",
+    "buttonText": "Jetzt starten",
+    "emailSubject": "Partner-Anfrage - Mein Café listen",
+    "emailBody": "Hallo, ich bin interessiert daran, mein Café/Workspace auf Nomad Cafes zu listen. Bitte senden Sie mir weitere Informationen über Partnerschaftsmöglichkeiten."
+  },
+  "cafeDetail": {
+    "share": "Teilen",
+    "save": "Speichern",
+    "saved": "Gespeichert",
+    "location": "Standort",
+    "hours": "Öffnungszeiten",
+    "priceRange": "Preisklasse",
+    "author": "Autor",
+    "connect": "Verbinden",
+    "contact": "Kontakt",
+    "website": "Website",
+    "phone": "Telefon",
+    "overview": "Übersicht",
+    "features": "Ausstattung",
+    "gallery": "Galerie",
+    "faqs": "Häufige Fragen",
+    "reviews": "Bewertungen",
+    "writeReview": "Bewertung schreiben",
+    "submitReview": "Bewertung absenden",
+    "addReview": "Bewertung hinzufügen",
+    "viewAllReviews": "Alle {{count}} Bewertungen ansehen",
+    "signInToReview": "Melde dich an oder erstelle ein Konto, um eine Bewertung zu hinterlassen.",
+    "sendReview": "Bewertung senden",
+    "reviewSubmitted": "Bewertung erfolgreich gesendet!",
+    "reviewError": "Fehler beim Senden der Bewertung. Bitte versuche es erneut.",
+    "writeReviewPlaceholder": "Schreibe deine Bewertung...",
+    "nowOpen": "Jetzt geöffnet",
+    "opensAt": "Öffnet um {{time}}",
+    "nowClosed": "Jetzt geschlossen",
+    "contactBusiness": "Unternehmen kontaktieren",
+    "sendMessage": "Nachricht senden",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "E-Mail",
+    "phonePlaceholder": "Telefon",
+    "messagePlaceholder": "Nachricht",
+    "frequentlyAskedQuestions": "Häufig gestellte Fragen",
+    "reviewForm": {
+      "yourRating": "Deine Bewertung",
+      "yourReview": "Deine Bewertung",
+      "writeYourReview": "Schreibe deine Bewertung hier...",
+      "overall": "Gesamt",
+      "wifi": "WLAN-Qualität",
+      "power": "Steckdosen",
+      "noise": "Ruhe",
+      "coffee": "Kaffee-Qualität"
+    },
+    "getDirections": "Route anzeigen",
+    "viewOnMap": "Auf Karte anzeigen",
+    "translate": "Übersetzen",
+    "translating": "Wird übersetzt...",
+    "showOriginal": "Original anzeigen",
+    "translatedAutomatically": "Automatisch übersetzt",
+    "notFound": {
+      "title": "Café nicht gefunden",
+      "description": "Wir konnten dieses Café nicht finden. Es wurde möglicherweise entfernt oder die URL ist falsch.",
+      "goBack": "Zurück"
+    }
+  },
+  "amenities": {
+    "fastWifi": "Schnelles WLAN",
+    "strongWifi": "Starkes WLAN",
+    "reliableWifi": "Zuverlässiges WLAN",
+    "powerOutlets": "Steckdosen",
+    "powerOutletsMostTables": "Steckdosen an den meisten Tischen",
+    "powerOutletsEveryTable": "Steckdosen an jedem Tisch",
+    "lotsPowerOutlets": "Viele Steckdosen",
+    "outdoorSeating": "Außensitzplätze",
+    "indoorOutdoorSeating": "Innen- und Außensitzplätze",
+    "indoorSeatingOnly": "Nur Innensitzplätze",
+    "balconyJungleViews": "Balkon mit Dschungelblick",
+    "streetParking": "Straßenparkplätze",
+    "petFriendly": "Haustierfreundlich",
+    "acceptsCreditCards": "Akzeptiert Kreditkarten",
+    "wheelchairAccessible": "Rollstuhlgerecht",
+    "quiet": "Ruhig",
+    "quietZone": "Ruhezone",
+    "veryQuiet": "Sehr ruhig",
+    "quietBackgroundMusic": "Leise Hintergrundmusik",
+    "quietHotelAmbience": "Ruhige Hotelatmosphäre",
+    "quietMezzanine": "Ruhiger Mezzanin-Bereich",
+    "quietFocusedCrowd": "Ruhiges, konzentriertes Publikum",
+    "airConditioning": "Klimaanlage",
+    "strongAc": "Starke Klimaanlage",
+    "strongAcIndoors": "Starke Klimaanlage innen",
+    "hotelGuestsNomadsMix": "Hotelgäste & Nomaden Mix",
+    "hotelAmbience": "Hotelatmosphäre",
+    "longCommunalTables": "Lange Gemeinschaftstische",
+    "longCommunalWorkTable": "Langer Gemeinschaftsarbeitstisch",
+    "dedicatedWorkDesks": "Dedizierte Arbeitsplätze",
+    "privateBooths": "Private Nischen",
+    "minimalistInterior": "Minimalistisches Interieur",
+    "plantFilledInterior": "Pflanzenreiches Interieur",
+    "artOnWalls": "Kunst an den Wänden",
+    "brightNaturalLight": "Helles natürliches Licht",
+    "casualRestaurantVibe": "Lockere Restaurant-Atmosphäre",
+    "goodForSmallGroups": "Gut für kleine Gruppen",
+    "goodForSoloWork": "Gut für Einzelarbeit",
+    "goodForWritingReading": "Gut zum Schreiben & Lesen",
+    "greatForDeepWork": "Ideal für konzentriertes Arbeiten",
+    "laptopFriendlyPolicy": "Laptop-freundliche Richtlinien",
+    "lateOpeningHours": "Späte Öffnungszeiten",
+    "smoothieBar": "Smoothie-Bar",
+    "smoothieBowls": "Smoothie-Bowls",
+    "healthyMenu": "Gesunde Speisekarte",
+    "specialtyCoffee": "Spezialitätenkaffee",
+    "unlimitedFilterCoffee": "Unbegrenzter Filterkaffee",
+    "gymAccessSameBuilding": "Fitnessstudio-Zugang im selben Gebäude",
+    "fitnessCenterNearby": "Fitnesscenter in der Nähe",
+    "lockerAccessGymMembers": "Schließfach-Zugang (für Fitnessstudio-Mitglieder)",
+    "attachedToMuseum": "An Museum angeschlossen",
+    "spacious": "Geräumig",
+    "vintage": "Vintage-Stil",
+    "modern": "Modernes Design",
+    "cozy": "Gemütliche Atmosphäre",
+    "meetingRooms": "Besprechungsräume",
+    "standingDesks": "Stehtische",
+    "parking": "Parkplätze vorhanden",
+    "bikeParking": "Fahrradstellplätze",
+    "foodMenu": "Speisekarte",
+    "alcohol": "Alkohol erhältlich",
+    "veganOptions": "Vegane Optionen",
+    "open24Hours": "24 Stunden geöffnet",
+    "workFriendly": "Arbeitsfreundlich",
+    "instagramWorthy": "Instagram-tauglich",
+    "openLate": "Spät geöffnet",
+    "greatCoffee": "Toller Kaffee",
+    "foodAvailable": "Essen verfügbar",
+    "meetingFriendly": "Meeting-freundlich",
+    "goodLighting": "Gute Beleuchtung",
+    "accessible": "Barrierefrei",
+    "smokeFree": "Rauchfrei",
+    "acceptsCards": "Kartenzahlung",
+    "reservations": "Reservierungen möglich"
+  },
+  "pricing": {
+    "drink": "Getränk",
+    "smoothie": "Smoothie",
+    "coffeeSnack": "Kaffee & Snack",
+    "meal": "Mahlzeit"
+  },
+  "about": {
+    "title": "Über uns",
+    "heading": "Über uns",
+    "placeholder": "Inhalte der Über-uns-Seite folgen in Kürze. Diese Seite wird Informationen über unsere Mission, unser Team und unsere Werte enthalten."
+  },
+  "auth": {
+    "login": {
+      "title": "Willkommen zurück",
+      "subtitle": "Melden Sie sich an, um fortzufahren",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "deine@email.de",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "Gib dein Passwort ein",
+      "forgotPassword": "Passwort vergessen?",
+      "signInButton": "Anmelden",
+      "noAccount": "Noch kein Konto?",
+      "signUpLink": "Registrieren",
+      "errors": {
+        "emailRequired": "E-Mail ist erforderlich",
+        "emailInvalid": "Bitte gib eine gültige E-Mail ein",
+        "passwordRequired": "Passwort ist erforderlich",
+        "passwordTooShort": "Passwort muss mindestens 6 Zeichen lang sein",
+        "loginFailed": "Anmeldung fehlgeschlagen. Bitte versuche es erneut."
+      }
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "subtitle": "Erstelle dein kostenloses Konto",
+      "nameLabel": "Vollständiger Name",
+      "namePlaceholder": "Max Mustermann",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "deine@email.de",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "Erstelle ein Passwort",
+      "passwordHelper": "Min. 8 Zeichen mit Groß-, Kleinbuchstaben und Zahl",
+      "confirmPasswordLabel": "Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Bestätige dein Passwort",
+      "createAccountButton": "Konto erstellen",
+      "hasAccount": "Hast du bereits ein Konto?",
+      "signInLink": "Anmelden",
+      "errors": {
+        "nameRequired": "Name ist erforderlich",
+        "nameTooShort": "Name muss mindestens 2 Zeichen lang sein",
+        "emailRequired": "E-Mail ist erforderlich",
+        "emailInvalid": "Bitte gib eine gültige E-Mail ein",
+        "passwordRequired": "Passwort ist erforderlich",
+        "passwordTooShort": "Passwort muss mindestens 8 Zeichen lang sein",
+        "passwordWeak": "Passwort muss Groß-, Kleinbuchstaben und eine Zahl enthalten",
+        "confirmPasswordRequired": "Bitte bestätige dein Passwort",
+        "passwordsNoMatch": "Passwörter stimmen nicht überein",
+        "registrationFailed": "Registrierung fehlgeschlagen. Bitte versuche es erneut."
+      }
+    },
+    "forgotPassword": {
+      "title": "Passwort zurücksetzen",
+      "subtitle": "Gib deine E-Mail ein und wir senden dir einen Link zum Zurücksetzen",
+      "emailLabel": "E-Mail",
+      "emailPlaceholder": "deine@email.de",
+      "sendResetButton": "Link senden",
+      "backToLogin": "Zurück zur Anmeldung",
+      "successTitle": "Prüfe deine E-Mails",
+      "successMessage": "Wir haben einen Link zum Zurücksetzen an",
+      "successInfo": "Keine E-Mail erhalten? Überprüfe deinen Spam-Ordner oder versuche es erneut.",
+      "tryAnotherEmail": "Andere E-Mail versuchen",
+      "errors": {
+        "emailRequired": "E-Mail ist erforderlich",
+        "emailInvalid": "Bitte gib eine gültige E-Mail ein",
+        "sendFailed": "E-Mail konnte nicht gesendet werden. Bitte versuche es erneut."
+      }
+    },
+    "resetPassword": {
+      "title": "Neues Passwort erstellen",
+      "subtitle": "Gib dein neues Passwort ein",
+      "passwordLabel": "Neues Passwort",
+      "passwordPlaceholder": "Erstelle ein neues Passwort",
+      "passwordHelper": "Min. 8 Zeichen mit Groß-, Kleinbuchstaben und Zahl",
+      "confirmPasswordLabel": "Neues Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Bestätige dein neues Passwort",
+      "resetButton": "Passwort zurücksetzen",
+      "backToLogin": "Zurück zur Anmeldung",
+      "successTitle": "Passwort erfolgreich zurückgesetzt",
+      "successMessage": "Dein Passwort wurde erfolgreich zurückgesetzt. Du kannst dich jetzt mit deinem neuen Passwort anmelden.",
+      "goToLogin": "Zur Anmeldung",
+      "errors": {
+        "passwordRequired": "Passwort ist erforderlich",
+        "passwordTooShort": "Passwort muss mindestens 8 Zeichen lang sein",
+        "passwordWeak": "Passwort muss Groß-, Kleinbuchstaben und eine Zahl enthalten",
+        "confirmPasswordRequired": "Bitte bestätige dein Passwort",
+        "passwordsNoMatch": "Passwörter stimmen nicht überein",
+        "resetFailed": "Passwort konnte nicht zurückgesetzt werden. Bitte versuche es erneut.",
+        "invalidToken": "Ungültiger oder abgelaufener Link. Bitte fordere einen neuen an.",
+        "tokenRequired": "Zurücksetzungstoken ist erforderlich"
+      }
+    },
+    "verifyEmail": {
+      "title": "E-Mail verifizieren",
+      "subtitle": "Wir haben einen Verifizierungslink an deine E-Mail-Adresse gesendet",
+      "checkEmailTitle": "Prüfe deine E-Mails",
+      "checkEmailMessage": "Wir haben einen Verifizierungslink gesendet an",
+      "checkEmailInfo": "Klicke auf den Link in der E-Mail, um dein Konto zu verifizieren. Der Link läuft in 24 Stunden ab.",
+      "verifyingTitle": "E-Mail wird verifiziert...",
+      "verifyingMessage": "Bitte warte, während wir deine E-Mail-Adresse verifizieren",
+      "successTitle": "E-Mail verifiziert!",
+      "successMessage": "Deine E-Mail wurde erfolgreich verifiziert. Du kannst jetzt auf alle Funktionen zugreifen.",
+      "goToLogin": "Zur Anmeldung",
+      "goToDashboard": "Zum Dashboard",
+      "resendButton": "Verifizierungs-E-Mail erneut senden",
+      "resendSuccess": "Verifizierungs-E-Mail gesendet! Überprüfe deinen Posteingang.",
+      "didntReceive": "Keine E-Mail erhalten?",
+      "checkSpam": "Überprüfe deinen Spam-Ordner oder",
+      "resendLink": "sende die E-Mail erneut",
+      "backToLogin": "Zurück zur Anmeldung",
+      "errors": {
+        "verificationFailed": "E-Mail-Verifizierung fehlgeschlagen. Bitte versuche es erneut.",
+        "invalidToken": "Ungültiger oder abgelaufener Verifizierungslink. Bitte fordere einen neuen an.",
+        "tokenRequired": "Verifizierungstoken ist erforderlich",
+        "resendFailed": "Verifizierungs-E-Mail konnte nicht erneut gesendet werden. Bitte versuche es erneut.",
+        "alreadyVerified": "Diese E-Mail ist bereits verifiziert."
+      }
+    },
+    "authCta": {
+      "title": "Anmeldung erforderlich",
+      "body": {
+        "favorite": "Erstelle kostenlos ein Konto, um deine Lieblings-Workspaces zu speichern und jederzeit darauf zuzugreifen.",
+        "review": "Erstelle kostenlos ein Konto, um Bewertungen zu schreiben und anderen Nomaden zu helfen, großartige Workspaces zu finden."
+      },
+      "actions": {
+        "signup": "Registrieren",
+        "login": "Anmelden",
+        "later": "Später"
+      }
+    }
+  },
+  "contact": {
+    "phonePrefix": "Telefon: ",
+    "subjectGeneral": "Allgemeine Anfrage",
+    "messageSent": "Nachricht erfolgreich gesendet!"
+  },
+  "errors": {
+    "boundary": {
+      "title": "Hoppla! Etwas ist schiefgelaufen",
+      "defaultMessage": "Ein unerwarteter Fehler ist aufgetreten",
+      "tryAgain": "Erneut versuchen"
+    },
+    "feature": {
+      "title": "{{feature}} konnte nicht geladen werden",
+      "defaultMessage": "Beim Laden dieses Bereichs ist ein Fehler aufgetreten. Bitte versuche es erneut.",
+      "tryAgain": "Erneut versuchen",
+      "goHome": "Zur Startseite"
+    },
+    "notFound": {
+      "title": "404",
+      "message": "Die gesuchte Seite existiert nicht.",
+      "goHome": "Zur Startseite"
+    },
+    "loading": "Lädt...",
+    "api": {
+      "generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+      "invalidCredentials": "Ungültige E-Mail oder Passwort. Bitte überprüfe deine Anmeldedaten.",
+      "sessionExpired": "Deine Sitzung ist abgelaufen. Bitte melde dich erneut an.",
+      "emailNotVerified": "Bitte bestätige deine E-Mail-Adresse bevor du dich anmeldest.",
+      "accountDisabled": "Dein Konto wurde deaktiviert. Bitte kontaktiere den Support.",
+      "validationError": "Bitte überprüfe deine Eingaben und versuche es erneut.",
+      "invalidRequest": "Ungültige Anfrage. Bitte versuche es erneut.",
+      "permissionDenied": "Du hast keine Berechtigung für diese Aktion.",
+      "notAuthenticated": "Bitte melde dich an, um fortzufahren.",
+      "notFound": "Die angeforderte Ressource wurde nicht gefunden.",
+      "alreadyExists": "Diese Ressource existiert bereits.",
+      "tooManyRequests": "Zu viele Anfragen. Bitte warte einen Moment und versuche es erneut.",
+      "serverError": "Serverfehler. Bitte versuche es später erneut.",
+      "serviceUnavailable": "Dienst vorübergehend nicht verfügbar. Bitte versuche es später erneut.",
+      "timeout": "Zeitüberschreitung. Bitte überprüfe deine Verbindung und versuche es erneut.",
+      "badRequest": "Ungültige Anfrage. Bitte überprüfe deine Eingaben.",
+      "conflict": "Ein Konflikt ist aufgetreten. Bitte aktualisiere die Seite und versuche es erneut.",
+      "networkError": "Verbindung fehlgeschlagen. Bitte überprüfe deine Internetverbindung."
+    }
+  },
+  "terms": {
+    "title": "Nutzungsbedingungen",
+    "heading": "Nutzungsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "placeholder": "Nutzungsbedingungen folgen in Kürze. Dies wird Nutzervereinbarungen, Richtlinien zur akzeptablen Nutzung und rechtliche Haftungsausschlüsse enthalten.",
+    "sections": {
+      "acceptance": "Akzeptanz der Bedingungen",
+      "userAccounts": "Benutzerkonten",
+      "contentLiability": "Inhalte und Haftung",
+      "disclaimers": "Haftungsausschlüsse"
+    }
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "heading": "Datenschutzerklärung",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "placeholder": "Datenschutzerklärung folgt in Kürze. Dies wird detailliert beschreiben, wie wir Ihre persönlichen Daten erfassen, verwenden und schützen.",
+    "sections": {
+      "dataCollection": "Datenerfassung",
+      "dataUsage": "Wie wir Ihre Daten verwenden",
+      "dataSecurity": "Datensicherheit",
+      "yourRights": "Ihre Rechte"
+    }
+  },
+  "account": {
+    "editProfile": {
+      "title": "Profil bearbeiten",
+      "nameLabel": "Vollständiger Name",
+      "namePlaceholder": "Name eingeben",
+      "bioLabel": "Bio",
+      "bioPlaceholder": "Erzähl uns etwas über dich...",
+      "bioHelper": "Zeichen",
+      "saveButton": "Änderungen speichern",
+      "success": "Profil erfolgreich aktualisiert!",
+      "errors": {
+        "nameRequired": "Name ist erforderlich",
+        "nameTooShort": "Name muss mindestens 2 Zeichen haben",
+        "invalidInput": "Ungültige Eingabe erkannt",
+        "updateFailed": "Profil konnte nicht aktualisiert werden. Bitte erneut versuchen."
+      }
+    },
+    "changePassword": {
+      "title": "Passwort ändern",
+      "currentLabel": "Aktuelles Passwort",
+      "currentPlaceholder": "Aktuelles Passwort eingeben",
+      "newLabel": "Neues Passwort",
+      "newPlaceholder": "Neues Passwort eingeben",
+      "newHelper": "Mindestens 8 Zeichen",
+      "confirmLabel": "Neues Passwort bestätigen",
+      "confirmPlaceholder": "Neues Passwort bestätigen",
+      "saveButton": "Passwort ändern",
+      "success": "Passwort erfolgreich geändert!",
+      "errors": {
+        "currentRequired": "Aktuelles Passwort ist erforderlich",
+        "newRequired": "Neues Passwort ist erforderlich",
+        "newTooShort": "Passwort muss mindestens 8 Zeichen haben",
+        "mismatch": "Passwörter stimmen nicht überein",
+        "invalidInput": "Ungültige Eingabe erkannt",
+        "updateFailed": "Passwort konnte nicht geändert werden. Bitte erneut versuchen."
+      }
+    }
+  }
+}

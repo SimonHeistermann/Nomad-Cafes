@@ -1,0 +1,329 @@
+/* ==== Home Footer - Integrated CTA + Footer ==== */
+
+.home-footer {
+  position: relative;
+  background: linear-gradient(180deg,
+    #1a1f3a 0%,
+    #0f1429 50%,
+    #0a0e1f 100%
+  );
+  overflow: hidden;
+}
+
+/* Starry Night Background */
+.home-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    /* Large stars */
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent),
+    /* Medium stars */
+    radial-gradient(1px 1px at 33% 20%, white, transparent),
+    radial-gradient(1px 1px at 75% 40%, white, transparent),
+    radial-gradient(1px 1px at 15% 60%, white, transparent),
+    radial-gradient(1px 1px at 45% 80%, white, transparent),
+    radial-gradient(1px 1px at 25% 90%, white, transparent),
+    /* Small stars */
+    radial-gradient(0.5px 0.5px at 10% 15%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(0.5px 0.5px at 30% 40%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(0.5px 0.5px at 70% 20%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(0.5px 0.5px at 85% 50%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(0.5px 0.5px at 40% 65%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(0.5px 0.5px at 95% 85%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(0.5px 0.5px at 12% 75%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(0.5px 0.5px at 65% 90%, rgba(255, 255, 255, 0.8), transparent);
+  background-size:
+    200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%,
+    200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%,
+    200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%,
+    200% 200%, 200% 200%, 200% 200%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Twinkling animation for stars */
+.home-footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 35% 25%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1.5px 1.5px at 55% 45%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 72% 65%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 18% 82%, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+/* ==== CTA Section ==== */
+
+.home-footer-cta {
+  padding: 120px 0 80px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .home-footer-cta {
+    padding: 80px 0 60px;
+  }
+}
+
+.home-footer-cta-content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.home-footer-cta-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 1.25rem 0;
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .home-footer-cta-title {
+    font-size: 2.25rem;
+  }
+}
+
+.home-footer-cta-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 3rem 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .home-footer-cta-subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.home-footer-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Enhanced button styling for better visibility */
+.home-footer-cta-buttons .btn--primary {
+  background: var(--primary);
+  color: white;
+}
+
+.home-footer-cta-buttons .btn--outline {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.home-footer-cta-buttons .btn--outline:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--secondary);
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+@media (max-width: 576px) {
+  .home-footer-cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* ==== Footer Main Section ==== */
+
+.home-footer-main {
+  padding: 80px 0 60px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .home-footer-main {
+    padding: 60px 0 50px;
+  }
+}
+
+.home-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+}
+
+@media (max-width: 992px) {
+  .home-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.home-footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.home-footer-heading {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.home-footer-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: color 0.2s ease;
+}
+
+.home-footer-link:hover {
+  color: white;
+}
+
+/* Contact List */
+
+.home-footer-contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.home-footer-contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.home-footer-contact-icon {
+  color: var(--primary);
+  font-size: 1.125rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.home-footer-contact-link {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.home-footer-contact-link:hover {
+  color: white;
+}
+
+/* ==== Footer Bottom ==== */
+
+.home-footer-bottom {
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.home-footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .home-footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}
+
+.home-footer-copy {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.home-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.home-footer-logo-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.home-footer-brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+}
+
+.home-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.home-footer-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.125rem;
+  transition: all 0.2s ease;
+}
+
+.home-footer-social a:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}

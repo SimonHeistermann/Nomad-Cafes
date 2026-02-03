@@ -1,0 +1,112 @@
+# =============================================================================
+# Docker Compose Configuration for Nomad Cafe Backend
+# =============================================================================
+#
+# Usage:
+#   Development: docker-compose up
+#   Production:  docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+#
+# Required environment variables (set in .env or shell):
+#   POSTGRES_PASSWORD - PostgreSQL password
+#
+# Optional environment variables:
+#   POSTGRES_USER     - PostgreSQL user (default: nomadcafe)
+#   POSTGRES_DB       - PostgreSQL database (default: nomadcafe)
+#
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # PostgreSQL Database
+  # ---------------------------------------------------------------------------
+  db:
+    image: postgres:16
+    container_name: nomadcafe-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-nomadcafe}
+      POSTGRES_USER: ${POSTGRES_USER:-nomadcafe}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nomadcafe}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nomadcafe} -d ${POSTGRES_DB:-nomadcafe}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # ---------------------------------------------------------------------------
+  # Redis (Caching & Background Jobs)
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7
+    container_name: nomadcafe-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # Django API Server
+  # ---------------------------------------------------------------------------
+  api:
+    build: .
+    container_name: nomadcafe-api
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-nomadcafe}:${POSTGRES_PASSWORD:-nomadcafe}@db:5432/${POSTGRES_DB:-nomadcafe}
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ---------------------------------------------------------------------------
+  # RQ Worker (Background Jobs: Email, Async Tasks)
+  # ---------------------------------------------------------------------------
+  worker:
+    build: .
+    container_name: nomadcafe-worker
+    restart: unless-stopped
+    command: python manage.py rqworker default email
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-nomadcafe}:${POSTGRES_PASSWORD:-nomadcafe}@db:5432/${POSTGRES_DB:-nomadcafe}
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - .:/app
+
+volumes:
+  pgdata:
+    name: nomadcafe-pgdata
+  redisdata:
+    name: nomadcafe-redisdata

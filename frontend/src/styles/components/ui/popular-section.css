@@ -1,0 +1,103 @@
+/* ==== Popular Cafés Section ==== */
+
+.popular-section {
+    padding: 72px 0 80px;
+    background: transparent;
+  }
+  
+  .popular-section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 64px; /* etwas mehr Abstand nach unten */
+  }
+  
+  .popular-section-title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-section-title);
+    font-weight: 700;
+    margin: 0 0 10px;
+    color: var(--text-main);
+  }
+  
+  .popular-section-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    margin: 0;
+  }
+  
+  /* Slider */
+  
+  .popular-slider-viewport {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .popular-slider-track {
+    display: flex;
+    width: 100%;
+    gap: 24px;
+    padding: 12px;
+  }
+  
+  .popular-slider-page {
+    flex: 0 0 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  
+  /* Pagination Dots */
+  
+  .popular-slider-dots {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .popular-slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: rgba(148, 163, 184, 0.6);
+    transition:
+      background-color 0.18s ease,
+      width 0.18s ease;
+  }
+  
+  .popular-slider-dot--active {
+    width: 20px;
+    background: #111827;
+  }
+  
+  /* Responsive Layout */
+  
+  @media (max-width: 1024px) {
+    .popular-slider-page {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .popular-section {
+      padding: 56px 0 64px;
+    }
+
+    .popular-section-header {
+      margin-bottom: 28px;
+    }
+
+    .popular-section-title {
+      font-size: var(--fs-section-title-mobile);
+    }
+
+    .popular-slider-page {
+      grid-template-columns: 1fr;
+    }
+  }
+  

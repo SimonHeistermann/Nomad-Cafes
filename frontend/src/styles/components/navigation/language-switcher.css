@@ -1,0 +1,108 @@
+.language-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.language-switcher-button {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.language-switcher-button:hover {
+  background: var(--bg);
+  border-color: var(--primary);
+}
+
+.language-switcher-flag {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.language-switcher-code {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.language-switcher-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 160px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-medium);
+  overflow: hidden;
+  z-index: 1000;
+  animation: languageDropdownSlide 0.2s ease;
+}
+
+@keyframes languageDropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.language-switcher-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-main);
+  text-align: left;
+}
+
+.language-switcher-option:hover {
+  background: var(--bg);
+}
+
+.language-switcher-option--active {
+  background: hsl(160, 35%, 95%);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.language-switcher-option--active:hover {
+  background: hsl(160, 35%, 93%);
+}
+
+.language-switcher-option-flag {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.language-switcher-option-label {
+  flex: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .language-switcher-dropdown {
+    right: 0;
+    left: auto;
+  }
+}

@@ -1,0 +1,196 @@
+.trending-section {
+    padding: 80px 0 160px; /* ordentlicher Abstand zur Popular-Section */
+    background: #F4F4F4;
+  }
+  
+  .trending-section-header {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto 64px;
+  }
+  
+  .trending-section-title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-section-title);
+    font-weight: 700;
+    line-height: var(--lh-heading);
+    margin: 0 0 6px;
+    color: var(--text-main);
+  }
+  
+  .trending-section-subtitle {
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    margin: 0;
+  }
+  
+  /* ==== Grid-Layout ==== */
+  
+  .trending-grid {
+    display: grid;
+    gap: 20px;
+  }
+  
+  /* Default: Mobile – eine Spalte */
+  .trending-grid-item {
+    min-width: 0;
+  }
+  
+  /* Tablet: 2 Spalten */
+  @media (min-width: 640px) {
+    .trending-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  /* Desktop: 12-Spalten-Layout wie im Mockup */
+  @media (min-width: 1024px) {
+    .trending-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+  
+    .trending-grid-item {
+      grid-column: span 4;
+    }
+  
+    /* 1. Kachel: breit oben links */
+    .trending-grid-item:nth-child(1) {
+      grid-column: span 8;
+    }
+  
+    /* 2. Kachel: schmal oben rechts */
+    .trending-grid-item:nth-child(2) {
+      grid-column: span 4;
+    }
+  
+    /* 3. Kachel: schmal unten links */
+    .trending-grid-item:nth-child(3) {
+      grid-column: span 4;
+    }
+  
+    /* 4. Kachel: breit unten rechts */
+    .trending-grid-item:nth-child(4) {
+      grid-column: span 8;
+    }
+  
+    /* Ab der 5. Kachel: normale 4-Spalten-Kacheln */
+    .trending-grid-item:nth-child(n + 5) {
+      grid-column: span 4;
+    }
+  }
+  
+  /* ==== Card / Tile ==== */
+  
+  .trending-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--radius-sm);             /* gleich wie Listing Card */
+    overflow: hidden;                /* wichtig für saubere Ecken */
+    text-align: left;
+    box-shadow: var(--shadow-soft);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      filter 0.18s ease;
+  }
+  
+/* === Hover-Animation === */
+
+.trending-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 28px hsla(215, 25%, 20%, 0.22);
+  }
+  
+  .trending-card:hover .trending-card-media {
+    transform: scale(1.04);
+  }
+  
+  .trending-card:hover .trending-card-gradient {
+    background: linear-gradient(
+      to top,
+      rgba(15, 23, 42, 0.82) 0%,
+      rgba(15, 23, 42, 0.40) 45%,
+      rgba(15, 23, 42, 0.06) 100%
+    );
+  }
+  
+  /* Bild smooth animieren */
+  .trending-card-media {
+    transition: transform 0.5s ease;
+  }
+  
+  /* Gradient smooth animieren */
+  .trending-card-gradient {
+    transition: background 0.35s ease;
+  }
+  
+  
+  /* Medienbereich – alle Kacheln gleiche Höhe */
+  .trending-card-media {
+    position: relative;
+    width: 100%;
+    height: 260px;                   /* 🔥 gleiche Höhe für alle Tiles */
+    background-color: #0f172a;       /* Fallback */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* dunkler Verlauf über Bild */
+  .trending-card-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(15, 23, 42, 0.75) 0%,
+      rgba(15, 23, 42, 0.35) 40%,
+      rgba(15, 23, 42, 0.05) 100%
+    );
+  }
+  
+  /* Text unten mittig */
+  .trending-card-content {
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 0 16px;
+    color: #f9fafb;
+  }
+  
+  .trending-card-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  
+  .trending-card-subtitle {
+    font-family: var(--font-body);
+    font-size: 12px;
+    margin: 0;
+    opacity: 0.9;
+  }
+  
+  /* Mobile Feinschliff */
+
+  @media (max-width: 639px) {
+    .trending-section-title {
+      font-size: var(--fs-section-title-mobile);
+    }
+
+    .trending-card-media {
+      height: 220px;                 /* auf Mobile etwas niedriger */
+    }
+
+    .trending-card-content {
+      bottom: 18px;
+    }
+  }
+  

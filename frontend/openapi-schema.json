@@ -1,0 +1,2952 @@
+openapi: 3.0.3
+info:
+  title: Nomad Cafe API
+  version: 1.0.0
+  description: API for discovering cafes optimized for remote work and digital nomads.
+  contact:
+    email: api@nomadcafe.dev
+  license:
+    name: MIT
+paths:
+  /api/auth/change-password/:
+    post:
+      operationId: auth_change_password_create
+      description: |-
+        POST /api/auth/change-password/
+
+        Change password for authenticated user.
+      tags:
+      - auth
+      responses:
+        '200':
+          description: No response body
+  /api/auth/login/:
+    post:
+      operationId: auth_login_create
+      description: |-
+        POST /api/auth/login/
+
+        Authenticate user and return tokens via cookies.
+      tags:
+      - auth
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/logout/:
+    post:
+      operationId: auth_logout_create
+      description: |-
+        POST /api/auth/logout/
+
+        Logout user by blacklisting refresh token and clearing cookies.
+      tags:
+      - auth
+      responses:
+        '200':
+          description: No response body
+  /api/auth/me/:
+    get:
+      operationId: auth_me_retrieve
+      description: |-
+        GET /api/auth/me/ - Get current user profile
+        PATCH /api/auth/me/ - Update current user profile
+      tags:
+      - auth
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: auth_me_update
+      description: |-
+        GET /api/auth/me/ - Get current user profile
+        PATCH /api/auth/me/ - Update current user profile
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: auth_me_partial_update
+      description: |-
+        GET /api/auth/me/ - Get current user profile
+        PATCH /api/auth/me/ - Update current user profile
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileUpdateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileUpdate'
+          description: ''
+  /api/auth/password-reset/:
+    post:
+      operationId: auth_password_reset_create
+      description: |-
+        POST /api/auth/password-reset/
+
+        Request password reset email.
+        Always returns success to prevent email enumeration.
+      tags:
+      - auth
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/password-reset/confirm/:
+    post:
+      operationId: auth_password_reset_confirm_create
+      description: |-
+        POST /api/auth/password-reset/confirm/
+
+        Confirm password reset with token and new password.
+      tags:
+      - auth
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/register/:
+    post:
+      operationId: auth_register_create
+      description: |-
+        POST /api/auth/register/
+
+        Register a new user account.
+        Returns user data and sets auth cookies.
+      tags:
+      - auth
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/resend-verification/:
+    post:
+      operationId: auth_resend_verification_create
+      description: |-
+        POST /api/auth/resend-verification/
+
+        Resend email verification.
+        Always returns success to prevent email enumeration.
+      tags:
+      - auth
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/token/refresh/:
+    post:
+      operationId: auth_token_refresh_create
+      description: |-
+        POST /api/auth/token/refresh/
+
+        Refresh access token using refresh token from cookie.
+      tags:
+      - auth
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/verify-email/:
+    post:
+      operationId: auth_verify_email_create
+      description: |-
+        POST /api/auth/verify-email/
+
+        Verify email address with token.
+      tags:
+      - auth
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/bookmarks/:
+    get:
+      operationId: bookmarks_list
+      description: |-
+        ViewSet for user bookmarks.
+
+        Endpoints:
+        - GET /api/bookmarks/ - List user's bookmarks
+        - POST /api/bookmarks/ - Add bookmark (body: {cafe_id: uuid})
+        - DELETE /api/bookmarks/{cafe_id}/ - Remove bookmark
+        - GET /api/bookmarks/{cafe_id}/ - Check if bookmarked
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - bookmarks
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBookmarkList'
+          description: ''
+    post:
+      operationId: bookmarks_create
+      description: |-
+        ViewSet for user bookmarks.
+
+        Endpoints:
+        - GET /api/bookmarks/ - List user's bookmarks
+        - POST /api/bookmarks/ - Add bookmark (body: {cafe_id: uuid})
+        - DELETE /api/bookmarks/{cafe_id}/ - Remove bookmark
+        - GET /api/bookmarks/{cafe_id}/ - Check if bookmarked
+      tags:
+      - bookmarks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookmarkRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BookmarkRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BookmarkRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bookmark'
+          description: ''
+  /api/bookmarks/{cafe_id}/:
+    get:
+      operationId: bookmarks_retrieve
+      description: |-
+        Check if a cafe is bookmarked.
+        Returns {"is_bookmarked": true/false}
+      parameters:
+      - in: path
+        name: cafe_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - bookmarks
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bookmark'
+          description: ''
+    put:
+      operationId: bookmarks_update
+      description: |-
+        ViewSet for user bookmarks.
+
+        Endpoints:
+        - GET /api/bookmarks/ - List user's bookmarks
+        - POST /api/bookmarks/ - Add bookmark (body: {cafe_id: uuid})
+        - DELETE /api/bookmarks/{cafe_id}/ - Remove bookmark
+        - GET /api/bookmarks/{cafe_id}/ - Check if bookmarked
+      parameters:
+      - in: path
+        name: cafe_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - bookmarks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookmarkRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BookmarkRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BookmarkRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bookmark'
+          description: ''
+    patch:
+      operationId: bookmarks_partial_update
+      description: |-
+        ViewSet for user bookmarks.
+
+        Endpoints:
+        - GET /api/bookmarks/ - List user's bookmarks
+        - POST /api/bookmarks/ - Add bookmark (body: {cafe_id: uuid})
+        - DELETE /api/bookmarks/{cafe_id}/ - Remove bookmark
+        - GET /api/bookmarks/{cafe_id}/ - Check if bookmarked
+      parameters:
+      - in: path
+        name: cafe_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - bookmarks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedBookmarkRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedBookmarkRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedBookmarkRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bookmark'
+          description: ''
+    delete:
+      operationId: bookmarks_destroy
+      description: Remove bookmark by cafe_id.
+      parameters:
+      - in: path
+        name: cafe_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - bookmarks
+      responses:
+        '204':
+          description: No response body
+  /api/cafes/:
+    get:
+      operationId: cafes_list
+      description: |-
+        ViewSet for Cafe CRUD operations.
+
+        Endpoints:
+        - GET /api/cafes/ - List all cafes (with filters)
+        - GET /api/cafes/{slug}/ - Get cafe detail
+        - POST /api/cafes/ - Create cafe (admin only)
+        - PATCH /api/cafes/{slug}/ - Update cafe (admin only)
+        - DELETE /api/cafes/{slug}/ - Delete cafe (admin only)
+        - GET /api/cafes/popular/ - Get popular cafes
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+      - in: query
+        name: city
+        schema:
+          type: string
+      - in: query
+        name: feature
+        schema:
+          type: string
+      - in: query
+        name: is_featured
+        schema:
+          type: boolean
+      - in: query
+        name: location
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: price_level
+        schema:
+          type: integer
+      - in: query
+        name: price_max
+        schema:
+          type: integer
+      - in: query
+        name: price_min
+        schema:
+          type: integer
+      - in: query
+        name: rating_min
+        schema:
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: tag
+        schema:
+          type: string
+      tags:
+      - cafes
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCafeListList'
+          description: ''
+    post:
+      operationId: cafes_create
+      description: |-
+        ViewSet for Cafe CRUD operations.
+
+        Endpoints:
+        - GET /api/cafes/ - List all cafes (with filters)
+        - GET /api/cafes/{slug}/ - Get cafe detail
+        - POST /api/cafes/ - Create cafe (admin only)
+        - PATCH /api/cafes/{slug}/ - Update cafe (admin only)
+        - DELETE /api/cafes/{slug}/ - Delete cafe (admin only)
+        - GET /api/cafes/popular/ - Get popular cafes
+      tags:
+      - cafes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CafeCreateUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CafeCreateUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CafeCreateUpdateRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CafeCreateUpdate'
+          description: ''
+  /api/cafes/{cafe_slug}/reviews/:
+    get:
+      operationId: cafes_reviews_list
+      description: |-
+        ViewSet for reviews nested under cafes.
+
+        Endpoints:
+        - GET /api/cafes/{cafe_slug}/reviews/ - List reviews
+        - POST /api/cafes/{cafe_slug}/reviews/ - Create review
+        - GET /api/cafes/{cafe_slug}/reviews/{id}/ - Get review
+        - PATCH /api/cafes/{cafe_slug}/reviews/{id}/ - Update review
+        - DELETE /api/cafes/{cafe_slug}/reviews/{id}/ - Delete review
+      parameters:
+      - in: path
+        name: cafe_slug
+        schema:
+          type: string
+        required: true
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - cafes
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedReviewListList'
+          description: ''
+    post:
+      operationId: cafes_reviews_create
+      description: Create a new review for the cafe.
+      parameters:
+      - in: path
+        name: cafe_slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - cafes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewCreateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ReviewCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReviewCreateRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewCreate'
+          description: ''
+  /api/cafes/{cafe_slug}/reviews/{id}/:
+    get:
+      operationId: cafes_reviews_retrieve
+      description: |-
+        ViewSet for reviews nested under cafes.
+
+        Endpoints:
+        - GET /api/cafes/{cafe_slug}/reviews/ - List reviews
+        - POST /api/cafes/{cafe_slug}/reviews/ - Create review
+        - GET /api/cafes/{cafe_slug}/reviews/{id}/ - Get review
+        - PATCH /api/cafes/{cafe_slug}/reviews/{id}/ - Update review
+        - DELETE /api/cafes/{cafe_slug}/reviews/{id}/ - Delete review
+      parameters:
+      - in: path
+        name: cafe_slug
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - cafes
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewDetail'
+          description: ''
+    patch:
+      operationId: cafes_reviews_partial_update
+      description: |-
+        ViewSet for reviews nested under cafes.
+
+        Endpoints:
+        - GET /api/cafes/{cafe_slug}/reviews/ - List reviews
+        - POST /api/cafes/{cafe_slug}/reviews/ - Create review
+        - GET /api/cafes/{cafe_slug}/reviews/{id}/ - Get review
+        - PATCH /api/cafes/{cafe_slug}/reviews/{id}/ - Update review
+        - DELETE /api/cafes/{cafe_slug}/reviews/{id}/ - Delete review
+      parameters:
+      - in: path
+        name: cafe_slug
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - cafes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewUpdateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewUpdate'
+          description: ''
+    delete:
+      operationId: cafes_reviews_destroy
+      description: Delete a review (soft delete by setting is_active=False).
+      parameters:
+      - in: path
+        name: cafe_slug
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - cafes
+      responses:
+        '204':
+          description: No response body
+  /api/cafes/{slug}/:
+    get:
+      operationId: cafes_retrieve
+      description: |-
+        ViewSet for Cafe CRUD operations.
+
+        Endpoints:
+        - GET /api/cafes/ - List all cafes (with filters)
+        - GET /api/cafes/{slug}/ - Get cafe detail
+        - POST /api/cafes/ - Create cafe (admin only)
+        - PATCH /api/cafes/{slug}/ - Update cafe (admin only)
+        - DELETE /api/cafes/{slug}/ - Delete cafe (admin only)
+        - GET /api/cafes/popular/ - Get popular cafes
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - cafes
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CafeDetail'
+          description: ''
+    put:
+      operationId: cafes_update
+      description: |-
+        ViewSet for Cafe CRUD operations.
+
+        Endpoints:
+        - GET /api/cafes/ - List all cafes (with filters)
+        - GET /api/cafes/{slug}/ - Get cafe detail
+        - POST /api/cafes/ - Create cafe (admin only)
+        - PATCH /api/cafes/{slug}/ - Update cafe (admin only)
+        - DELETE /api/cafes/{slug}/ - Delete cafe (admin only)
+        - GET /api/cafes/popular/ - Get popular cafes
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - cafes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CafeCreateUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CafeCreateUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CafeCreateUpdateRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CafeCreateUpdate'
+          description: ''
+    patch:
+      operationId: cafes_partial_update
+      description: |-
+        ViewSet for Cafe CRUD operations.
+
+        Endpoints:
+        - GET /api/cafes/ - List all cafes (with filters)
+        - GET /api/cafes/{slug}/ - Get cafe detail
+        - POST /api/cafes/ - Create cafe (admin only)
+        - PATCH /api/cafes/{slug}/ - Update cafe (admin only)
+        - DELETE /api/cafes/{slug}/ - Delete cafe (admin only)
+        - GET /api/cafes/popular/ - Get popular cafes
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - cafes
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCafeCreateUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCafeCreateUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCafeCreateUpdateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CafeCreateUpdate'
+          description: ''
+    delete:
+      operationId: cafes_destroy
+      description: |-
+        ViewSet for Cafe CRUD operations.
+
+        Endpoints:
+        - GET /api/cafes/ - List all cafes (with filters)
+        - GET /api/cafes/{slug}/ - Get cafe detail
+        - POST /api/cafes/ - Create cafe (admin only)
+        - PATCH /api/cafes/{slug}/ - Update cafe (admin only)
+        - DELETE /api/cafes/{slug}/ - Delete cafe (admin only)
+        - GET /api/cafes/popular/ - Get popular cafes
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - cafes
+      responses:
+        '204':
+          description: No response body
+  /api/cafes/metadata/:
+    get:
+      operationId: cafes_metadata_retrieve
+      description: |-
+        GET /api/cafes/metadata/
+
+        Returns allowed categories, features, and other metadata.
+        Used by frontend to populate filter dropdowns and validate inputs.
+      tags:
+      - cafes
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/cafes/popular/:
+    get:
+      operationId: cafes_popular_retrieve
+      description: |-
+        GET /api/cafes/popular/
+
+        Returns top-rated cafes using weighted scoring.
+        Simple approach: order by rating_avg * rating_count to balance quality and popularity.
+      tags:
+      - cafes
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CafeMinimal'
+          description: ''
+  /api/contact/:
+    post:
+      operationId: contact_create
+      description: |-
+        POST /api/contact/
+
+        Handle contact form submissions.
+      tags:
+      - contact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ContactRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ContactRequest'
+        required: true
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+          description: ''
+  /api/health/:
+    get:
+      operationId: health_retrieve
+      description: |-
+        GET /api/health/
+
+        Health check endpoint for monitoring.
+      tags:
+      - health
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+          description: ''
+  /api/locations/:
+    get:
+      operationId: locations_list
+      description: |-
+        ViewSet for Location CRUD operations.
+
+        Endpoints:
+        - GET /api/locations/ - List all locations
+        - GET /api/locations/{slug}/ - Get location detail
+        - POST /api/locations/ - Create location (admin only)
+        - PATCH /api/locations/{slug}/ - Update location (admin only)
+        - DELETE /api/locations/{slug}/ - Delete location (admin only)
+        - GET /api/locations/trending/ - Get trending locations
+      parameters:
+      - in: query
+        name: country
+        schema:
+          type: string
+      - in: query
+        name: has_cafes
+        schema:
+          type: boolean
+      - in: query
+        name: is_featured
+        schema:
+          type: boolean
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - locations
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedLocationListList'
+          description: ''
+    post:
+      operationId: locations_create
+      description: |-
+        ViewSet for Location CRUD operations.
+
+        Endpoints:
+        - GET /api/locations/ - List all locations
+        - GET /api/locations/{slug}/ - Get location detail
+        - POST /api/locations/ - Create location (admin only)
+        - PATCH /api/locations/{slug}/ - Update location (admin only)
+        - DELETE /api/locations/{slug}/ - Delete location (admin only)
+        - GET /api/locations/trending/ - Get trending locations
+      tags:
+      - locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationCreateUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LocationCreateUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LocationCreateUpdateRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCreateUpdate'
+          description: ''
+  /api/locations/{slug}/:
+    get:
+      operationId: locations_retrieve
+      description: |-
+        ViewSet for Location CRUD operations.
+
+        Endpoints:
+        - GET /api/locations/ - List all locations
+        - GET /api/locations/{slug}/ - Get location detail
+        - POST /api/locations/ - Create location (admin only)
+        - PATCH /api/locations/{slug}/ - Update location (admin only)
+        - DELETE /api/locations/{slug}/ - Delete location (admin only)
+        - GET /api/locations/trending/ - Get trending locations
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - locations
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationDetail'
+          description: ''
+    put:
+      operationId: locations_update
+      description: |-
+        ViewSet for Location CRUD operations.
+
+        Endpoints:
+        - GET /api/locations/ - List all locations
+        - GET /api/locations/{slug}/ - Get location detail
+        - POST /api/locations/ - Create location (admin only)
+        - PATCH /api/locations/{slug}/ - Update location (admin only)
+        - DELETE /api/locations/{slug}/ - Delete location (admin only)
+        - GET /api/locations/trending/ - Get trending locations
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationCreateUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LocationCreateUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LocationCreateUpdateRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCreateUpdate'
+          description: ''
+    patch:
+      operationId: locations_partial_update
+      description: |-
+        ViewSet for Location CRUD operations.
+
+        Endpoints:
+        - GET /api/locations/ - List all locations
+        - GET /api/locations/{slug}/ - Get location detail
+        - POST /api/locations/ - Create location (admin only)
+        - PATCH /api/locations/{slug}/ - Update location (admin only)
+        - DELETE /api/locations/{slug}/ - Delete location (admin only)
+        - GET /api/locations/trending/ - Get trending locations
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedLocationCreateUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedLocationCreateUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedLocationCreateUpdateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCreateUpdate'
+          description: ''
+    delete:
+      operationId: locations_destroy
+      description: |-
+        ViewSet for Location CRUD operations.
+
+        Endpoints:
+        - GET /api/locations/ - List all locations
+        - GET /api/locations/{slug}/ - Get location detail
+        - POST /api/locations/ - Create location (admin only)
+        - PATCH /api/locations/{slug}/ - Update location (admin only)
+        - DELETE /api/locations/{slug}/ - Delete location (admin only)
+        - GET /api/locations/trending/ - Get trending locations
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - locations
+      responses:
+        '204':
+          description: No response body
+  /api/locations/trending/:
+    get:
+      operationId: locations_trending_retrieve
+      description: |-
+        GET /api/locations/trending/
+
+        Returns top locations by cafe count.
+      tags:
+      - locations
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendingLocation'
+          description: ''
+  /api/reviews/:
+    get:
+      operationId: reviews_list
+      description: |-
+        ViewSet for current user's reviews.
+
+        Endpoints:
+        - GET /api/reviews/me/ - List user's reviews
+        - GET /api/reviews/me/{id}/ - Get specific review
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - reviews
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUserReviewList'
+          description: ''
+  /api/reviews/{id}/:
+    get:
+      operationId: reviews_retrieve
+      description: |-
+        ViewSet for current user's reviews.
+
+        Endpoints:
+        - GET /api/reviews/me/ - List user's reviews
+        - GET /api/reviews/me/{id}/ - Get specific review
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviews
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserReview'
+          description: ''
+  /api/reviews/me/:
+    get:
+      operationId: reviews_me_retrieve
+      description: Alias for list - GET /api/reviews/me/
+      tags:
+      - reviews
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserReview'
+          description: ''
+  /api/stats/:
+    get:
+      operationId: stats_retrieve
+      description: |-
+        GET /api/stats/
+
+        Returns platform statistics.
+      tags:
+      - stats
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  schemas:
+    Bookmark:
+      type: object
+      description: Serializer for user bookmarks.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        cafe:
+          allOf:
+          - $ref: '#/components/schemas/CafeList'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - cafe
+      - created_at
+      - id
+    BookmarkRequest:
+      type: object
+      description: Serializer for user bookmarks.
+      properties:
+        cafe_id:
+          type: string
+          format: uuid
+          writeOnly: true
+      required:
+      - cafe_id
+    CafeCreateUpdate:
+      type: object
+      description: Serializer for creating/updating cafes (admin only).
+      properties:
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          maxLength: 220
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          description: 'Localized description: {"en": "...", "de": "..."}'
+        overview:
+          description: 'Localized overview/tagline: {"en": "...", "de": "..."}'
+        location:
+          type: string
+          format: uuid
+        address:
+          type: string
+          maxLength: 300
+        address_line_2:
+          type: string
+          maxLength: 200
+        postal_code:
+          type: string
+          maxLength: 20
+        city:
+          type: string
+          maxLength: 100
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        phone:
+          type: string
+          maxLength: 30
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        website:
+          type: string
+          format: uri
+          maxLength: 500
+        social_links:
+          description: '{"instagram": "url", "facebook": "url", "twitter": "url"}'
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        logo_url:
+          type: string
+          format: uri
+          description: Brand logo/badge image URL
+          maxLength: 500
+        gallery:
+          description: '["url1", "url2", ...]'
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        price_level:
+          allOf:
+          - $ref: '#/components/schemas/PriceLevelEnum'
+          minimum: 0
+          maximum: 9223372036854775807
+        amenities:
+          description: '{"wifi": true, "wifi_speed": "50mbps", "power_outlets": true,
+            ...}'
+        opening_hours:
+          description: '{"monday": {"open": "08:00", "close": "18:00"}, ...}'
+        timezone:
+          type: string
+          description: IANA timezone, inherits from location if empty
+          maxLength: 50
+        is_featured:
+          type: boolean
+        is_verified:
+          type: boolean
+        is_active:
+          type: boolean
+        allows_contact:
+          type: boolean
+          description: Show contact form on detail page
+        owner:
+          type: string
+          format: uuid
+          nullable: true
+        owner_role:
+          type: string
+          description: Owner's role, e.g. 'Owner & café designer', 'F&B Manager'
+          maxLength: 100
+      required:
+      - address
+      - city
+      - location
+      - name
+      - slug
+    CafeCreateUpdateRequest:
+      type: object
+      description: Serializer for creating/updating cafes (admin only).
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 220
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          description: 'Localized description: {"en": "...", "de": "..."}'
+        overview:
+          description: 'Localized overview/tagline: {"en": "...", "de": "..."}'
+        location:
+          type: string
+          format: uuid
+        address:
+          type: string
+          minLength: 1
+          maxLength: 300
+        address_line_2:
+          type: string
+          maxLength: 200
+        postal_code:
+          type: string
+          maxLength: 20
+        city:
+          type: string
+          minLength: 1
+          maxLength: 100
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        phone:
+          type: string
+          maxLength: 30
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        website:
+          type: string
+          format: uri
+          maxLength: 500
+        social_links:
+          description: '{"instagram": "url", "facebook": "url", "twitter": "url"}'
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        logo_url:
+          type: string
+          format: uri
+          description: Brand logo/badge image URL
+          maxLength: 500
+        gallery:
+          description: '["url1", "url2", ...]'
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        price_level:
+          allOf:
+          - $ref: '#/components/schemas/PriceLevelEnum'
+          minimum: 0
+          maximum: 9223372036854775807
+        features:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          writeOnly: true
+        amenities:
+          description: '{"wifi": true, "wifi_speed": "50mbps", "power_outlets": true,
+            ...}'
+        opening_hours:
+          description: '{"monday": {"open": "08:00", "close": "18:00"}, ...}'
+        timezone:
+          type: string
+          description: IANA timezone, inherits from location if empty
+          maxLength: 50
+        is_featured:
+          type: boolean
+        is_verified:
+          type: boolean
+        is_active:
+          type: boolean
+        allows_contact:
+          type: boolean
+          description: Show contact form on detail page
+        owner:
+          type: string
+          format: uuid
+          nullable: true
+        owner_role:
+          type: string
+          description: Owner's role, e.g. 'Owner & café designer', 'F&B Manager'
+          maxLength: 100
+      required:
+      - address
+      - city
+      - location
+      - name
+      - slug
+    CafeDetail:
+      type: object
+      description: |-
+        Serializer for cafe detail view.
+        Full representation with all fields.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          maxLength: 220
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+          readOnly: true
+        overview:
+          type: string
+          readOnly: true
+        location:
+          allOf:
+          - $ref: '#/components/schemas/LocationList'
+          readOnly: true
+        address:
+          type: string
+          maxLength: 300
+        address_line_2:
+          type: string
+          maxLength: 200
+        postal_code:
+          type: string
+          maxLength: 20
+        city:
+          type: string
+          maxLength: 100
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        phone:
+          type: string
+          maxLength: 30
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        website:
+          type: string
+          format: uri
+          maxLength: 500
+        social_links:
+          description: '{"instagram": "url", "facebook": "url", "twitter": "url"}'
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        logo_url:
+          type: string
+          format: uri
+          description: Brand logo/badge image URL
+          maxLength: 500
+        gallery:
+          description: '["url1", "url2", ...]'
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        category_color:
+          type: string
+          description: Hex color for category badge
+          maxLength: 7
+        price_level:
+          allOf:
+          - $ref: '#/components/schemas/PriceLevelEnum'
+          minimum: 0
+          maximum: 9223372036854775807
+        features:
+          type: array
+          items: {}
+          readOnly: true
+        amenities:
+          description: '{"wifi": true, "wifi_speed": "50mbps", "power_outlets": true,
+            ...}'
+        opening_hours:
+          description: '{"monday": {"open": "08:00", "close": "18:00"}, ...}'
+        timezone:
+          type: string
+          description: IANA timezone, inherits from location if empty
+          maxLength: 50
+        rating_avg:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        rating_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        rating_wifi:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        rating_power:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        rating_noise:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        rating_coffee:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        is_featured:
+          type: boolean
+        is_verified:
+          type: boolean
+        allows_contact:
+          type: boolean
+          description: Show contact form on detail page
+        is_bookmarked:
+          type: string
+          readOnly: true
+        owner_name:
+          type: string
+          readOnly: true
+        owner_role:
+          type: string
+          description: Owner's role, e.g. 'Owner & café designer', 'F&B Manager'
+          maxLength: 100
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - address
+      - city
+      - created_at
+      - description
+      - features
+      - id
+      - is_bookmarked
+      - location
+      - name
+      - overview
+      - owner_name
+      - slug
+      - updated_at
+    CafeList:
+      type: object
+      description: |-
+        Serializer for cafe list view.
+        Lightweight representation for listings.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          maxLength: 220
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+          readOnly: true
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        logo_url:
+          type: string
+          format: uri
+          description: Brand logo/badge image URL
+          maxLength: 500
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        category_color:
+          type: string
+          description: Hex color for category badge
+          maxLength: 7
+        price_level:
+          allOf:
+          - $ref: '#/components/schemas/PriceLevelEnum'
+          minimum: 0
+          maximum: 9223372036854775807
+        city:
+          type: string
+          maxLength: 100
+        location_name:
+          type: string
+          readOnly: true
+        phone:
+          type: string
+          maxLength: 30
+        rating_avg:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        rating_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        is_featured:
+          type: boolean
+        is_bookmarked:
+          type: string
+          readOnly: true
+        features:
+          type: array
+          items: {}
+          readOnly: true
+      required:
+      - city
+      - description
+      - features
+      - id
+      - is_bookmarked
+      - location_name
+      - name
+      - slug
+    CafeListRequest:
+      type: object
+      description: |-
+        Serializer for cafe list view.
+        Lightweight representation for listings.
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 220
+          pattern: ^[-a-zA-Z0-9_]+$
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        logo_url:
+          type: string
+          format: uri
+          description: Brand logo/badge image URL
+          maxLength: 500
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        category_color:
+          type: string
+          minLength: 1
+          description: Hex color for category badge
+          maxLength: 7
+        price_level:
+          allOf:
+          - $ref: '#/components/schemas/PriceLevelEnum'
+          minimum: 0
+          maximum: 9223372036854775807
+        city:
+          type: string
+          minLength: 1
+          maxLength: 100
+        phone:
+          type: string
+          maxLength: 30
+        rating_avg:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+        rating_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        is_featured:
+          type: boolean
+      required:
+      - city
+      - name
+      - slug
+    CafeMinimal:
+      type: object
+      description: Minimal cafe serializer for nested representations.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        slug:
+          type: string
+          maxLength: 220
+          pattern: ^[-a-zA-Z0-9_]+$
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        city:
+          type: string
+          maxLength: 100
+        rating_avg:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,1}(?:\.\d{0,2})?$
+      required:
+      - city
+      - id
+      - name
+      - slug
+    CategoryEnum:
+      enum:
+      - cafe
+      - coworking
+      - restaurant
+      - hotel_cafe
+      - library
+      - other
+      type: string
+      description: |-
+        * `cafe` - Café
+        * `coworking` - Coworking Space
+        * `restaurant` - Restaurant
+        * `hotel_cafe` - Hotel Café
+        * `library` - Library
+        * `other` - Other
+    Contact:
+      type: object
+      description: Serializer for contact form submissions.
+      properties:
+        name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+        subject:
+          $ref: '#/components/schemas/SubjectEnum'
+        message:
+          type: string
+          maxLength: 2000
+          minLength: 20
+      required:
+      - email
+      - message
+      - name
+      - subject
+    ContactRequest:
+      type: object
+      description: Serializer for contact form submissions.
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          minLength: 1
+        subject:
+          $ref: '#/components/schemas/SubjectEnum'
+        message:
+          type: string
+          minLength: 20
+          maxLength: 2000
+      required:
+      - email
+      - message
+      - name
+      - subject
+    HealthCheck:
+      type: object
+      description: Serializer for health check response.
+      properties:
+        status:
+          type: string
+        version:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        database:
+          type: string
+        cache:
+          type: string
+      required:
+      - cache
+      - database
+      - status
+      - timestamp
+      - version
+    LocationCreateUpdate:
+      type: object
+      description: Serializer for creating/updating locations (admin only).
+      properties:
+        name:
+          description: 'Localized name: {"en": "Berlin", "de": "Berlin"}'
+        slug:
+          type: string
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        country:
+          type: string
+          maxLength: 100
+        country_code:
+          type: string
+          maxLength: 2
+        region:
+          type: string
+          maxLength: 100
+        timezone:
+          type: string
+          description: IANA timezone (e.g., Europe/Berlin)
+          maxLength: 50
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        hero_image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        is_featured:
+          type: boolean
+        is_active:
+          type: boolean
+      required:
+      - country
+      - slug
+    LocationCreateUpdateRequest:
+      type: object
+      description: Serializer for creating/updating locations (admin only).
+      properties:
+        name:
+          description: 'Localized name: {"en": "Berlin", "de": "Berlin"}'
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        country:
+          type: string
+          minLength: 1
+          maxLength: 100
+        country_code:
+          type: string
+          maxLength: 2
+        region:
+          type: string
+          maxLength: 100
+        timezone:
+          type: string
+          minLength: 1
+          description: IANA timezone (e.g., Europe/Berlin)
+          maxLength: 50
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        hero_image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        is_featured:
+          type: boolean
+        is_active:
+          type: boolean
+      required:
+      - country
+      - slug
+    LocationDetail:
+      type: object
+      description: |-
+        Serializer for location detail view.
+        Full representation with all fields.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        slug:
+          type: string
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        country:
+          type: string
+          maxLength: 100
+        country_code:
+          type: string
+          maxLength: 2
+        region:
+          type: string
+          maxLength: 100
+        timezone:
+          type: string
+          description: IANA timezone (e.g., Europe/Berlin)
+          maxLength: 50
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        hero_image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        cafe_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        is_featured:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - country
+      - created_at
+      - id
+      - name
+      - slug
+    LocationList:
+      type: object
+      description: |-
+        Serializer for location list view.
+        Lightweight representation for listings.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        slug:
+          type: string
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        country:
+          type: string
+          maxLength: 100
+        country_code:
+          type: string
+          maxLength: 2
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        cafe_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        is_featured:
+          type: boolean
+      required:
+      - country
+      - id
+      - name
+      - slug
+    PaginatedBookmarkList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bookmark'
+    PaginatedCafeListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CafeList'
+    PaginatedLocationListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationList'
+    PaginatedReviewListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReviewList'
+    PaginatedUserReviewList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserReview'
+    PatchedBookmarkRequest:
+      type: object
+      description: Serializer for user bookmarks.
+      properties:
+        cafe_id:
+          type: string
+          format: uuid
+          writeOnly: true
+    PatchedCafeCreateUpdateRequest:
+      type: object
+      description: Serializer for creating/updating cafes (admin only).
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 220
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          description: 'Localized description: {"en": "...", "de": "..."}'
+        overview:
+          description: 'Localized overview/tagline: {"en": "...", "de": "..."}'
+        location:
+          type: string
+          format: uuid
+        address:
+          type: string
+          minLength: 1
+          maxLength: 300
+        address_line_2:
+          type: string
+          maxLength: 200
+        postal_code:
+          type: string
+          maxLength: 20
+        city:
+          type: string
+          minLength: 1
+          maxLength: 100
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        phone:
+          type: string
+          maxLength: 30
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        website:
+          type: string
+          format: uri
+          maxLength: 500
+        social_links:
+          description: '{"instagram": "url", "facebook": "url", "twitter": "url"}'
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        logo_url:
+          type: string
+          format: uri
+          description: Brand logo/badge image URL
+          maxLength: 500
+        gallery:
+          description: '["url1", "url2", ...]'
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        price_level:
+          allOf:
+          - $ref: '#/components/schemas/PriceLevelEnum'
+          minimum: 0
+          maximum: 9223372036854775807
+        features:
+          type: array
+          items:
+            type: string
+            minLength: 1
+          writeOnly: true
+        amenities:
+          description: '{"wifi": true, "wifi_speed": "50mbps", "power_outlets": true,
+            ...}'
+        opening_hours:
+          description: '{"monday": {"open": "08:00", "close": "18:00"}, ...}'
+        timezone:
+          type: string
+          description: IANA timezone, inherits from location if empty
+          maxLength: 50
+        is_featured:
+          type: boolean
+        is_verified:
+          type: boolean
+        is_active:
+          type: boolean
+        allows_contact:
+          type: boolean
+          description: Show contact form on detail page
+        owner:
+          type: string
+          format: uuid
+          nullable: true
+        owner_role:
+          type: string
+          description: Owner's role, e.g. 'Owner & café designer', 'F&B Manager'
+          maxLength: 100
+    PatchedLocationCreateUpdateRequest:
+      type: object
+      description: Serializer for creating/updating locations (admin only).
+      properties:
+        name:
+          description: 'Localized name: {"en": "Berlin", "de": "Berlin"}'
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        country:
+          type: string
+          minLength: 1
+          maxLength: 100
+        country_code:
+          type: string
+          maxLength: 2
+        region:
+          type: string
+          maxLength: 100
+        timezone:
+          type: string
+          minLength: 1
+          description: IANA timezone (e.g., Europe/Berlin)
+          maxLength: 50
+        image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        hero_image_url:
+          type: string
+          format: uri
+          maxLength: 500
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+          nullable: true
+        is_featured:
+          type: boolean
+        is_active:
+          type: boolean
+    PatchedReviewUpdateRequest:
+      type: object
+      description: |-
+        Serializer for updating a review.
+        Only allows updating content, not ratings structure.
+      properties:
+        rating_overall:
+          type: integer
+          maximum: 5
+          minimum: 1
+        rating_wifi:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_power:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_noise:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+          description: Higher = quieter
+        rating_coffee:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        text:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        language:
+          type: string
+          minLength: 1
+          description: Language code (e.g., en, de)
+          maxLength: 5
+        photos:
+          description: '["url1", "url2", ...]'
+    PatchedUserProfileUpdateRequest:
+      type: object
+      description: Serializer for updating user profile.
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        bio:
+          type: string
+          description: Short bio or description
+          maxLength: 500
+        avatar_url:
+          type: string
+          format: uri
+          maxLength: 500
+    PriceLevelEnum:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      type: integer
+      description: |-
+        * `1` - $
+        * `2` - $$
+        * `3` - $$$
+        * `4` - $$$$
+    ReviewCreate:
+      type: object
+      description: |-
+        Serializer for creating a review.
+        User and cafe are set from context.
+      properties:
+        rating_overall:
+          type: integer
+          maximum: 5
+          minimum: 1
+        rating_wifi:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_power:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_noise:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+          description: Higher = quieter
+        rating_coffee:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        text:
+          type: string
+          maxLength: 2000
+        language:
+          type: string
+          description: Language code (e.g., en, de)
+          maxLength: 5
+        photos:
+          description: '["url1", "url2", ...]'
+      required:
+      - rating_overall
+      - text
+    ReviewCreateRequest:
+      type: object
+      description: |-
+        Serializer for creating a review.
+        User and cafe are set from context.
+      properties:
+        rating_overall:
+          type: integer
+          maximum: 5
+          minimum: 1
+        rating_wifi:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_power:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_noise:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+          description: Higher = quieter
+        rating_coffee:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        text:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        language:
+          type: string
+          minLength: 1
+          description: Language code (e.g., en, de)
+          maxLength: 5
+        photos:
+          description: '["url1", "url2", ...]'
+      required:
+      - rating_overall
+      - text
+    ReviewDetail:
+      type: object
+      description: |-
+        Serializer for review detail view.
+        Full representation including user details.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        user:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          readOnly: true
+        cafe_name:
+          type: string
+          readOnly: true
+        cafe_slug:
+          type: string
+          readOnly: true
+        rating_overall:
+          type: integer
+          maximum: 5
+          minimum: 1
+        rating_wifi:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_power:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_noise:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+          description: Higher = quieter
+        rating_coffee:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        text:
+          type: string
+          maxLength: 2000
+        language:
+          type: string
+          description: Language code (e.g., en, de)
+          maxLength: 5
+        photos:
+          description: '["url1", "url2", ...]'
+        is_verified:
+          type: boolean
+          description: Review from verified visit
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - cafe_name
+      - cafe_slug
+      - created_at
+      - id
+      - rating_overall
+      - text
+      - updated_at
+      - user
+    ReviewList:
+      type: object
+      description: |-
+        Serializer for review list view.
+        Shows review with minimal user info.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        author_name:
+          type: string
+          readOnly: true
+        author_avatar_url:
+          type: string
+          readOnly: true
+        rating_overall:
+          type: integer
+          maximum: 5
+          minimum: 1
+        rating_wifi:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_power:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_noise:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+          description: Higher = quieter
+        rating_coffee:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        text:
+          type: string
+          maxLength: 2000
+        language:
+          type: string
+          description: Language code (e.g., en, de)
+          maxLength: 5
+        photos:
+          description: '["url1", "url2", ...]'
+        is_verified:
+          type: boolean
+          description: Review from verified visit
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - author_avatar_url
+      - author_name
+      - created_at
+      - id
+      - rating_overall
+      - text
+    ReviewUpdate:
+      type: object
+      description: |-
+        Serializer for updating a review.
+        Only allows updating content, not ratings structure.
+      properties:
+        rating_overall:
+          type: integer
+          maximum: 5
+          minimum: 1
+        rating_wifi:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_power:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_noise:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+          description: Higher = quieter
+        rating_coffee:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        text:
+          type: string
+          maxLength: 2000
+        language:
+          type: string
+          description: Language code (e.g., en, de)
+          maxLength: 5
+        photos:
+          description: '["url1", "url2", ...]'
+      required:
+      - rating_overall
+      - text
+    RoleEnum:
+      enum:
+      - user
+      - owner
+      - admin
+      type: string
+      description: |-
+        * `user` - User
+        * `owner` - Cafe Owner
+        * `admin` - Admin
+    SubjectEnum:
+      enum:
+      - general
+      - support
+      - feedback
+      - partnership
+      - cafe_submission
+      - bug_report
+      type: string
+      description: |-
+        * `general` - General Inquiry
+        * `support` - Technical Support
+        * `feedback` - Feedback
+        * `partnership` - Partnership
+        * `cafe_submission` - Submit a Cafe
+        * `bug_report` - Bug Report
+    TrendingLocation:
+      type: object
+      description: |-
+        Serializer for trending locations endpoint.
+        Minimal fields for performance.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        slug:
+          type: string
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        thumbnail_url:
+          type: string
+          format: uri
+          maxLength: 500
+        cafe_count:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+      required:
+      - id
+      - name
+      - slug
+    User:
+      type: object
+      description: |-
+        Public user representation.
+        Used in responses and for displaying user info.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Email address
+        name:
+          type: string
+          maxLength: 150
+        bio:
+          type: string
+          description: Short bio or description
+          maxLength: 500
+        display_name:
+          type: string
+          readOnly: true
+        avatar_url:
+          type: string
+          format: uri
+          maxLength: 500
+        role:
+          allOf:
+          - $ref: '#/components/schemas/RoleEnum'
+          readOnly: true
+        is_email_verified:
+          type: boolean
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - display_name
+      - email
+      - id
+      - is_email_verified
+      - role
+    UserProfileUpdate:
+      type: object
+      description: Serializer for updating user profile.
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        bio:
+          type: string
+          description: Short bio or description
+          maxLength: 500
+        avatar_url:
+          type: string
+          format: uri
+          maxLength: 500
+    UserRequest:
+      type: object
+      description: |-
+        Public user representation.
+        Used in responses and for displaying user info.
+      properties:
+        name:
+          type: string
+          maxLength: 150
+        bio:
+          type: string
+          description: Short bio or description
+          maxLength: 500
+        avatar_url:
+          type: string
+          format: uri
+          maxLength: 500
+    UserReview:
+      type: object
+      description: |-
+        Serializer for user's own reviews (GET /api/reviews/me/).
+        Includes cafe info.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        cafe_id:
+          type: string
+          format: uuid
+          readOnly: true
+        cafe_name:
+          type: string
+          readOnly: true
+        cafe_slug:
+          type: string
+          readOnly: true
+        cafe_thumbnail:
+          type: string
+          readOnly: true
+        cafe_city:
+          type: string
+          readOnly: true
+        rating_overall:
+          type: integer
+          maximum: 5
+          minimum: 1
+        rating_wifi:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_power:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        rating_noise:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+          description: Higher = quieter
+        rating_coffee:
+          type: integer
+          maximum: 5
+          minimum: 1
+          nullable: true
+        text:
+          type: string
+          maxLength: 2000
+        language:
+          type: string
+          description: Language code (e.g., en, de)
+          maxLength: 5
+        photos:
+          description: '["url1", "url2", ...]'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - cafe_city
+      - cafe_id
+      - cafe_name
+      - cafe_slug
+      - cafe_thumbnail
+      - created_at
+      - id
+      - rating_overall
+      - text
+      - updated_at
+tags:
+- name: Auth
+  description: Authentication endpoints
+- name: Users
+  description: User profile management
+- name: Locations
+  description: Location management
+- name: Cafes
+  description: Cafe discovery and management
+- name: Reviews
+  description: Cafe reviews
+- name: Bookmarks
+  description: User bookmarks
+- name: Core
+  description: Health check, contact, stats

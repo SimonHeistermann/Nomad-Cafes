@@ -1,0 +1,160 @@
+/* ==== Submit Venue CTA (über dem Footer) ==== */
+
+/* Der Bereich selbst hat oben Abstand zur Section darüber,
+   liegt aber unten direkt am Footer (kein padding-bottom). */
+   .submit-venue-section {
+    padding: 80px 0 0;
+    background: #F4F4F4;
+  }
+
+  @media (max-width: 768px) {
+    .submit-venue-section {
+      padding: 56px 0 0;
+    }
+  }
+  
+  /* Vollbreites blaues Band, wie der Footer */
+  .submit-venue-band {
+    position: relative;
+    background: var(--secondary);
+    background-image:
+        repeating-linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.08) 1px,
+            transparent 1px,
+            transparent 12px
+        );
+    color: var(--secondary-foreground);
+  }
+  
+  /* Topografie-/Noise-Muster als dezentes Overlay über das gesamte Band */
+  .submit-venue-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.25;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+      radial-gradient(circle at 100% 0, rgba(255, 255, 255, 0.07) 0, transparent 55%),
+      radial-gradient(circle at 0 100%, rgba(15, 118, 110, 0.16) 0, transparent 55%);
+  }
+  
+  /* Inhalt liegt über dem Muster */
+  .submit-venue-inner {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    /* Hintergrund transparent, damit das Band die volle Breite einfärbt */
+    background: transparent;
+    color: var(--secondary-foreground);
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    /* kein Shadow mehr – kommt erst beim Button-Hover */
+    box-shadow: none;
+  }
+  
+  /* Text-Spalte */
+  
+  .submit-venue-copy {
+    max-width: 620px;
+  }
+  
+  .submit-venue-title {
+    margin: 0 0 6px;
+    font-family: var(--font-heading);
+    font-size: var(--fs-h3);
+    line-height: var(--lh-heading);
+    color: #f9fafb;
+  }
+  
+  .submit-venue-text {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    line-height: var(--lh-body);
+    color: rgba(241, 245, 249, 0.92);
+  }
+  
+  /* Button rechts */
+  
+  .submit-venue-action {
+    flex-shrink: 0;
+  }
+  
+  /* weniger rund, kein Shadow im Idle-State */
+  .submit-venue-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 26px;
+    border-radius: var(--radius-sm); /* statt 999px */
+    border: none;
+    background: #ffffff; 
+    color: var(--secondary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: none;
+    transition:
+      transform 0.16s ease,
+      box-shadow 0.16s ease,
+      background-color 0.16s ease,
+      color 0.16s ease;
+  }
+  
+  /* Farbe bleibt gleich, nur leichter Shadow + kleiner Lift */
+  .submit-venue-button:hover {
+    transform: translateY(-1px);
+    background-color: #ffffff;
+    color: var(--secondary);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.2);
+  }
+  
+  .submit-venue-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+  }
+  
+  .submit-venue-button:focus-visible {
+    outline: 2px solid #e5f0ff;
+    outline-offset: 3px;
+  }
+  
+  /* ==== Responsive ==== */
+  
+  @media (max-width: 768px) {
+    .submit-venue-section {
+      padding: 56px 0 0; /* unten weiterhin 0 – direkt am Footer */
+    }
+  
+    .submit-venue-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 24px 20px;
+    }
+  
+    .submit-venue-copy {
+      max-width: none;
+    }
+  
+    .submit-venue-title {
+      font-size: 22px;
+    }
+  
+    .submit-venue-action {
+      width: 100%;
+    }
+  
+    .submit-venue-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  

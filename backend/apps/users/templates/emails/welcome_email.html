@@ -1,0 +1,24 @@
+{% extends "emails/base_email.html" %}
+
+{% block title %}Welcome to Nomad Cafes!{% endblock %}
+
+{% block content %}
+<p>Hi {{ display_name }},</p>
+
+<p>Welcome to Nomad Cafes! Your email has been verified and your account is now ready.</p>
+
+<p>You can now:</p>
+<ul style="color: #666; padding-left: 20px;">
+    <li>Discover the best cafes for remote work</li>
+    <li>Save your favorite spots</li>
+    <li>Share reviews with the community</li>
+</ul>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="{{ explore_url }}" style="display: inline-block; background-color: #2563eb; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">
+        Start Exploring
+    </a>
+</div>
+
+<p>Happy cafe hopping!</p>
+{% endblock %}

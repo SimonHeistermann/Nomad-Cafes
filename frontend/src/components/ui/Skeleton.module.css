@@ -1,0 +1,94 @@
+/* =============================================================================
+   Skeleton Loading Component Styles
+   ============================================================================= */
+
+.skeleton {
+  background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+  background-size: 200% 100%;
+}
+
+.animate {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Card skeleton */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Cafe card skeleton */
+.cafeCard {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+.cafeCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.cafeCardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.cafeCardFeatures {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(90deg, #374151 0%, #4b5563 50%, #374151 100%);
+    background-size: 200% 100%;
+  }
+
+  .card,
+  .cafeCard {
+    background: #1f2937;
+    border-color: #374151;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .cafeCardContent {
+    padding: 0.75rem;
+  }
+
+  .cafeCardFeatures {
+    gap: 0.375rem;
+  }
+}

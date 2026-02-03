@@ -1,0 +1,261 @@
+.site-footer {
+    position: relative;
+    background: linear-gradient(180deg,
+        #1a1f3a 0%,
+        #0f1429 50%,
+        #0a0e1f 100%
+    );
+    color: white;
+    padding-top: 120px;
+    overflow: hidden;
+}
+
+/* Starry Night Background */
+.site-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        /* Large stars */
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        /* Medium stars */
+        radial-gradient(1px 1px at 33% 20%, white, transparent),
+        radial-gradient(1px 1px at 75% 40%, white, transparent),
+        radial-gradient(1px 1px at 15% 60%, white, transparent),
+        radial-gradient(1px 1px at 45% 80%, white, transparent),
+        radial-gradient(1px 1px at 25% 90%, white, transparent),
+        /* Small stars */
+        radial-gradient(0.5px 0.5px at 10% 15%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(0.5px 0.5px at 30% 40%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(0.5px 0.5px at 70% 20%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(0.5px 0.5px at 85% 50%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(0.5px 0.5px at 40% 65%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(0.5px 0.5px at 95% 85%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(0.5px 0.5px at 12% 75%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(0.5px 0.5px at 65% 90%, rgba(255, 255, 255, 0.8), transparent);
+    background-size:
+        200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%,
+        200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%,
+        200% 200%, 200% 200%, 200% 200%, 200% 200%, 200% 200%,
+        200% 200%, 200% 200%, 200% 200%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Twinkling animation for stars */
+.site-footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1.5px 1.5px at 35% 25%, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1.5px 1.5px at 55% 45%, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 72% 65%, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 18% 82%, rgba(255, 255, 255, 0.7), transparent);
+    background-size: 200% 200%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+  
+.footer-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: var(--fs-small);
+    line-height: var(--lh-body);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-contact-icon {
+    height: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.footer-heading {
+    font-family: var(--font-heading);
+    font-size: var(--fs-h5);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-text {
+    font-size: var(--fs-small);
+    line-height: var(--lh-body);
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.4rem;
+}
+
+.footer-link {
+    display: block;
+    font-size: var(--fs-small);
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    margin-bottom: 0.35rem;
+    transition: color 0.2s ease;
+}
+
+.footer-link--static {
+    cursor: default;
+}
+
+.footer-link:hover {
+    color: white;
+}
+
+/* bottom bar */
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem 0;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-bottom-inner {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    column-gap: 2rem;
+    row-gap: 0.75rem;
+}
+
+.footer-copy {
+    font-size: var(--fs-small);
+    color: rgba(255, 255, 255, 0.7);
+    justify-self: flex-start;
+}
+
+.footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-self: center;
+}
+
+.footer-logo-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: white;
+}
+
+.footer-brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+}
+
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-self: flex-end;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.125rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.footer-social a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.footer-contact-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: var(--fs-small);
+    line-height: var(--lh-body);
+    transition: color 0.2s ease;
+}
+
+.footer-contact-link:hover {
+    color: white;
+}
+
+/* ==== Responsive ==== */
+
+@media (max-width: 900px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-bottom-inner {
+        grid-template-columns: 1fr;
+        justify-items: flex-start;
+    }
+
+    .footer-social {
+        justify-self: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-inner {
+        row-gap: 0.5rem;
+    }
+}

@@ -1,0 +1,46 @@
+asgiref==3.11.0
+black==26.1.0
+click==8.3.1
+dj-database-url==3.1.0
+Django==6.0.1
+django-cors-headers==4.9.0
+django-redis==6.0.0
+djangorestframework==3.16.1
+djangorestframework_simplejwt==5.5.1
+mypy_extensions==1.1.0
+packaging==26.0
+pathspec==1.0.4
+platformdirs==4.5.1
+psycopg==3.3.2
+psycopg-binary==3.3.2
+psycopg2-binary==2.9.11
+PyJWT==2.11.0
+python-dotenv==1.2.1
+pytokens==0.4.1
+redis==7.1.0
+ruff==0.14.14
+sqlparse==0.5.5
+whitenoise==6.11.0
+
+# Filtering
+django-filter==25.1
+
+# API Documentation
+drf-spectacular==0.29.0
+
+# Background Jobs
+django-rq==3.0.0
+rq==2.1.0
+
+# Email
+resend==2.7.0
+
+# Testing
+pytest==8.3.5
+pytest-django==4.10.0
+pytest-cov==6.1.0
+factory-boy==3.3.3
+
+# Monitoring & Logging
+sentry-sdk[django]==2.19.2
+python-json-logger==3.2.1

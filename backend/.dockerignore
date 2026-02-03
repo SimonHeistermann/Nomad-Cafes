@@ -1,0 +1,108 @@
+# =============================================================================
+# Docker Ignore File for Nomad Cafe Backend
+# =============================================================================
+# Files and directories to exclude from Docker build context
+# This speeds up builds and reduces image size
+# =============================================================================
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+*.md
+!README.md
+
+# Database
+*.sqlite3
+*.db
+db.sqlite3
+
+# Static files (collected at runtime)
+staticfiles/
+
+# Media files
+media/
+
+# Logs
+*.log
+logs/
+
+# Local development
+.env
+.env.local
+.env.*.local
+*.local
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.docker/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+Jenkinsfile
+
+# Misc
+*.bak
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,10 @@
+/* Sicherstellen, dass body keinen komischen Default hat */
+body {
+  margin: 0;
+}
+
+/* Root-Container für React-App */
+#root {
+  min-height: 100vh;
+}
+

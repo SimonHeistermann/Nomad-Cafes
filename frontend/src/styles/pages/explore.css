@@ -1,0 +1,372 @@
+/* src/styles/explore.css */
+
+/* ==== Explore Page Layout ==== */
+
+.explore-main {
+    padding: 40px 0 80px;
+    background: var(--bg);
+  }
+  
+  /* Toolbar: Filter + Sort + View Toggle */
+  .explore-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .explore-toolbar-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  
+  .explore-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  /* Filter-Block (Label + Dropdown) */
+  
+  .explore-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .explore-filter-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+  }
+  
+  /* ==== Custom Dropdown (statt <select>) ==== */
+  
+  .explore-dropdown {
+    position: relative;
+    min-width: 160px;
+    outline: none;
+  }
+  
+  .explore-dropdown-button {
+    width: 100%;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    padding: 8px 16px 8px 14px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-main);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease,
+      background-color 0.15s ease;
+  }
+  
+  .explore-dropdown-button:hover {
+    border-color: rgba(148, 163, 184, 0.9);
+    box-shadow: var(--shadow-soft);
+  }
+  
+.explore-dropdown:focus-visible .explore-dropdown-button {
+    outline: none;
+    border: 1px solid var(--border);
+}
+
+.explore-dropdown-button:focus,
+.explore-dropdown-button:focus-visible {
+    outline: none;
+    box-shadow: none; 
+}
+  
+  .explore-dropdown-value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .explore-dropdown-chevron {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-left: 6px;
+    transition: transform 0.18s ease;
+  }
+  
+  .explore-dropdown--open .explore-dropdown-chevron {
+    transform: rotate(180deg);
+  }
+  
+  /* Panel */
+  
+  .explore-dropdown-panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 100%;
+    padding: 6px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: var(--shadow-medium);
+    z-index: 10;
+  }
+  
+  .explore-dropdown--align-right .explore-dropdown-panel {
+    right: 0;
+    left: auto;
+  }
+  
+  .explore-dropdown-option {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: background-color 0.12s ease, color 0.12s ease;
+  }
+  
+  .explore-dropdown-option:hover,
+  .explore-dropdown-option--highlighted {
+    background: var(--muted, #f3f4f6);
+  }
+  
+  .explore-dropdown-option--active {
+    background: rgba(59, 130, 246, 0.08);
+    color: var(--secondary);
+  }
+  
+  /* ==== Sortierung ==== */
+  
+  .explore-sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .explore-sort-label {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  
+  /* ==== View Toggle ==== */
+  
+  .explore-view-toggle {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 2px;
+    background: rgba(148, 163, 184, 0.12);
+  }
+  
+  .explore-view-button {
+    border: none;
+    background: transparent;
+    border-radius: 999px;
+    padding: 4px 9px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease;
+  }
+  
+  .explore-view-button--active {
+    background: #ffffff;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .explore-view-icon {
+    display: block;
+    width: 14px;
+    height: 14px;
+    position: relative;
+  }
+  
+  /* simple Icons aus Punkten/Linien */
+  .explore-view-icon--grid::before,
+  .explore-view-icon--grid::after,
+  .explore-view-icon--list::before,
+  .explore-view-icon--list::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  
+  .explore-view-icon--grid::before {
+    background-image: radial-gradient(
+        circle,
+        var(--text-main) 55%,
+        transparent 56%
+      ),
+      radial-gradient(circle, var(--text-main) 55%, transparent 56%),
+      radial-gradient(circle, var(--text-main) 55%, transparent 56%),
+      radial-gradient(circle, var(--text-main) 55%, transparent 56%);
+    background-repeat: no-repeat;
+    background-position: 0 0, 100% 0, 0 100%, 100% 100%;
+    background-size: 6px 6px;
+  }
+  
+  .explore-view-icon--list::before {
+    background-image: linear-gradient(
+        to right,
+        var(--text-main) 0,
+        var(--text-main) 80%,
+        transparent 80%
+      ),
+      linear-gradient(
+        to right,
+        var(--text-main) 0,
+        var(--text-main) 80%,
+        transparent 80%
+      ),
+      linear-gradient(
+        to right,
+        var(--text-main) 0,
+        var(--text-main) 80%,
+        transparent 80%
+      );
+    background-repeat: no-repeat;
+    background-position: 0 0, 0 50%, 0 100%;
+    background-size: 100% 1px;
+  }
+  
+  /* ==== Meta-Info ==== */
+  
+  .explore-results-meta {
+    margin: 6px 0 22px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  
+  /* ==== Grid & List Layout ==== */
+
+  .explore-results-grid {
+    display: grid;
+    gap: 24px;
+  }
+
+  /* Ensure all grid items have the same height */
+  .explore-results-grid > * {
+    height: 100%;
+  }
+
+  /* Ensure cards stretch to fill the grid item */
+  .explore-results-grid .listing-card {
+    height: 100%;
+  }
+
+  /* Grid */
+  @media (min-width: 768px) {
+    .explore-results-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .explore-results-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* List-View: Karten einfach volle Breite untereinander */
+  .explore-results-grid--list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  
+  /* ==== Pagination ==== */
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--text-main);
+  }
+  
+  .pagination-arrow,
+  .pagination-page {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pagination-arrow {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    color: var(--text-main);
+    transition: background-color 0.15s ease;
+  }
+  
+  .pagination-arrow:hover:not(:disabled) {
+    background: rgba(148, 163, 184, 0.15);
+  }
+  
+  .pagination-arrow:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+  
+  .pagination-page {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    color: var(--text-main);
+    transition: background-color 0.15s ease, color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  
+  .pagination-page--active {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .pagination-page:hover:not(.pagination-page--active) {
+    background: rgba(148, 163, 184, 0.15);
+  }
+  
+  .pagination-ellipsis {
+    padding: 0 4px;
+    color: var(--text-muted);
+  }
+  
+  /* ==== Responsive ==== */
+  
+  @media (max-width: 768px) {
+    .explore-toolbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .explore-toolbar-right {
+      width: 100%;
+      justify-content: space-between;
+    }
+  
+    .explore-dropdown {
+      min-width: 0;
+    }
+  
+    .explore-dropdown-button {
+      max-width: 180px;
+    }
+  }
+  

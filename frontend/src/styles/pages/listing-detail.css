@@ -1,0 +1,1004 @@
+.listing-detail-main {
+    padding: 32px 0 80px;
+    background: var(--bg);
+  }
+  
+/* === Header === */
+
+.listing-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;          /* Buttons oben ausrichten */
+    gap: 24px;
+    margin-bottom: 40px;              /* mehr Luft nach unten */
+  }
+  
+  .listing-detail-header-main {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  
+  .listing-detail-avatar {
+    width: 67px;
+    height: 67px;
+    border-radius: 999px;
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .listing-detail-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+  }
+
+  .listing-detail-avatar-initial--hidden {
+    display: none;
+  }
+  
+  /* Textblock links */
+  .listing-detail-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .listing-detail-title {
+    font-size: 26px;
+    line-height: 1.25;
+    font-weight: 600;                 /* etwas weniger fett als default h1 */
+  }
+  
+  /* Meta-Zeile (Telefon, Ort, Rating, Preis, Badge) */
+  .listing-detail-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    align-items: center;
+    font-size: 13px;                  /* einheitliche Font-Size */
+    color: var(--text-main);
+  }
+  
+  .listing-detail-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  /* Icons schwarz */
+  .listing-detail-meta-item svg {
+    font-size: 14px;
+    color: var(--text-main);
+  }
+  
+  /* Telefon-Link & andere klickbare Meta-Items */
+  a.listing-detail-meta-item {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  a.listing-detail-meta-item:hover {
+    text-decoration: underline;       /* sichtbarer Hover */
+  }
+  
+  /* Rating-Item klickbar wie Link */
+  .listing-detail-meta-item--interactive {
+    cursor: pointer;
+  }
+  
+  .listing-detail-meta-item--interactive:hover span {
+    text-decoration: underline;
+  }
+  
+  /* Stern grau */
+  .listing-detail-meta-star {
+    color: var(--text-muted);
+  }
+  
+  /* Preis-Pill – kleines Radius, kein Border, grauer Bg, gleiche Font-Size */
+  .listing-detail-meta-price {
+    padding: 4px 10px;
+    border-radius: 6px;               /* "sm" */
+    background: #f3f4f6;
+    color: var(--text-main);
+    border: none;
+    font-size: 13px;
+  }
+  
+  .listing-detail-meta-price span {
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  
+  /* Open/Closed-Badge – gleiche Höhe/Font wie Price, etwas mehr Abstand nach links */
+  .listing-detail-meta-badge {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;                  /* wie Phone/Ort/Price/Reviews */
+    line-height: 1.4;
+    border: 1px solid var(--border);
+    background: #f9fafb;
+    color: var(--text-main);
+    margin-left: 4px;                 /* etwas mehr Gap rechts vom Textblock */
+  }
+  
+  /* Beschreibung im Header (falls du sie später wieder nutzt) */
+  .listing-detail-header-description {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  
+  /* Actions rechts – an obere Kante ziehen */
+  .listing-detail-header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 2px;                  /* minimal justieren, damit es clean wirkt */
+  }
+  
+  .listing-detail-header-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    padding-inline: 0.9rem;
+  }
+  
+  .listing-detail-header-btn svg {
+    font-size: 14px;
+  }
+  
+  .listing-detail-header-btn--primary {
+    padding-inline: 1.3rem;
+  }
+
+  /* Header: Open/Opens-at Badge soll gleich groß sein wie der restliche Text */
+.listing-detail-meta-item.listing-hours-badge {
+    font-size: 13px;     /* wie .listing-detail-meta-row */
+    padding: 4px 12px;   /* gleiche optische Höhe wie Price-Pill */
+  }
+  
+  
+  /* === Layout === */
+  
+  .listing-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(260px, 0.9fr);
+    gap: 24px;
+  }
+  
+  /* === Gallery === */
+  
+  .listing-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  
+  .listing-gallery-main {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .listing-gallery-main img {
+    display: block;
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+  }
+  
+  .listing-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 104px;
+    gap: 10px;
+  }
+  
+  .listing-gallery-thumb {
+    border-radius: 12px;
+    overflow: hidden;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+    background: transparent;
+  }
+  
+  .listing-gallery-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .listing-gallery-more {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    color: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  /* Overlay */
+  
+  .listing-gallery-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 40;
+  }
+  
+  .listing-gallery-overlay-inner {
+    position: relative;
+    max-width: 960px;
+    width: 90%;
+    max-height: 80vh;
+    border-radius: var(--radius-lg);
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .listing-gallery-overlay-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+  
+  .listing-gallery-overlay-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: none;
+    background: rgba(15, 23, 42, 0.75);
+    color: #f9fafb;
+    border-radius: 999px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .listing-gallery-overlay-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(15, 23, 42, 0.75);
+    color: #f9fafb;
+    border-radius: 999px;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .listing-gallery-overlay-arrow--left {
+    left: 10px;
+  }
+  
+  .listing-gallery-overlay-arrow--right {
+    right: 10px;
+  }
+  
+  /* === Sections (Overview / Features / FAQ) === */
+  
+  .listing-section {
+    padding: 18px 20px 18px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 16px;
+  }
+  
+  .listing-section-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .listing-section-text {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  
+  .listing-section-link {
+    margin-top: 6px;
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 13px;
+    color: var(--secondary);
+    cursor: pointer;
+  }
+  
+  /* Header innerhalb von Sections (z.B. Features + Nav) */
+  .listing-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  
+/* === Features === */
+
+.listing-features-section {
+    /* hook – falls später gebraucht */
+  }
+  
+  .listing-features-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .listing-features-nav-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+    color: var(--text-main);
+    font-size: 16px;
+    line-height: 1;              /* sorgt dafür, dass das Zeichen zentriert ist */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+  .listing-features-nav-button:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+  
+  .listing-features-nav-button:not(:disabled):hover {
+    background: rgba(148, 163, 184, 0.15);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .listing-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 32px;          /* etwas mehr Luft, weil keine Box mehr */
+    margin-top: 12px;
+  }
+  
+  .listing-feature-item {
+    display: flex;
+    align-items: center;      /* Text vertikal zu Icon zentriert */
+    gap: 12px;
+    padding: 2px 0;          /* nur minimal vertical spacing */
+    border-radius: 0;        /* keine eigene Box mehr */
+    background: transparent; /* keine Fläche */
+    border: none;            /* kein Rahmen */
+    font-size: 14px;
+    color: var(--text-main);
+  }
+  
+  .listing-feature-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  
+  .listing-feature-label {
+    line-height: 1.4;
+  }
+  
+  /* alter Dot kann bleiben, falls irgendwo anders genutzt */
+  .listing-feature-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: var(--secondary);
+  }  
+  
+  /* FAQ */
+  
+  .listing-faq-list {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .listing-faq-item {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: #fff;
+  }
+  
+  .listing-faq-question {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .listing-faq-toggle {
+    font-size: 18px;
+    color: var(--text-muted);
+  }
+  
+  .listing-faq-answer {
+    padding: 0 12px 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  
+  /* === Sidebar Cards === */
+  
+  .listing-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 16px;
+  }
+  
+  .listing-card-body {
+    padding: 16px 16px 18px;
+  }
+  
+  .listing-card-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  /* Location */
+  
+  .listing-location-map iframe {
+    width: 100%;
+    height: 180px;
+    border: 0;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .listing-location-address {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  
+  /* Hours */
+  
+  .listing-card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .listing-hours-badge {
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  
+  .listing-hours-badge--open {
+    color: var(--success);
+  }
+
+  .listing-hours-badge--closed {
+    color: var(--destructive);
+  }  
+  
+  .listing-hours-list {
+    margin: 10px 0 0;
+  }
+  
+  .listing-hours-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 2px 0;
+  }
+  
+  .listing-hours-row dt {
+    color: var(--text-muted);
+  }
+  
+  .listing-hours-row dd {
+    margin: 0;
+  }
+  
+  /* Meta / Social */
+  
+  .listing-meta-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .listing-meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .listing-meta-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+  }
+  
+  .listing-meta-value {
+    font-size: 14px;
+    color: var(--text-main);
+  }
+  
+  .listing-meta-sub {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  
+  .listing-meta-social {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  
+  .listing-meta-social a {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--footer-icon-bg);
+    color: var(--footer-text);
+    border: 1px solid var(--footer-icon-border);
+    font-size: 14px;
+  }
+  
+  /* Contact form */
+  
+  .listing-contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .listing-contact-input,
+  .listing-contact-textarea {
+    width: 100%;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--input);
+    padding: 7px 9px;
+    font-family: var(--font-body);
+    font-size: 14px;
+  }
+  
+  .listing-contact-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .listing-contact-submit {
+    margin-top: 6px;
+    width: 100%;
+  }
+  
+  /* Not found */
+  
+  .listing-detail-not-found {
+    padding-top: 40px;
+    text-align: center;
+  }
+  
+  .listing-detail-back-button {
+    margin-top: 16px;
+  }
+  
+  /* === Responsive === */
+  
+  @media (max-width: 960px) {
+    .listing-detail-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  
+    .listing-detail-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .listing-detail-header-actions {
+      margin-top: 8px;
+    }
+  
+    .listing-gallery {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  
+    .listing-gallery-main img {
+      height: 260px;
+    }
+  
+    .listing-gallery-grid {
+      grid-auto-rows: 90px;
+    }
+  
+    .listing-features-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .listing-detail-header {
+      gap: 16px;
+    }
+  
+    .listing-detail-header-actions {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+  
+    .listing-detail-header-btn {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+  }
+
+  /* === Reviews Summary & List === */
+
+.listing-reviews-section {
+    margin-top: 16px;
+  }
+  
+  .listing-reviews-summary {
+    margin-bottom: 18px;
+  }
+  
+  .listing-reviews-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .listing-reviews-summary-score {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .listing-reviews-summary-count {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  
+  .listing-reviews-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 32px;
+  }
+  
+  .listing-reviews-summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+  }
+  
+  .listing-reviews-summary-label {
+    color: var(--text-muted);
+  }
+  
+  .listing-reviews-summary-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .listing-reviews-summary-bar {
+    position: relative;
+    flex: 1;
+    height: 4px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    overflow: hidden;
+  }
+  
+  .listing-reviews-summary-bar-fill {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--secondary);
+  }
+  
+  .listing-reviews-summary-value {
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  /* Reviews list */
+  
+  .listing-reviews-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .listing-review-card {
+    padding: 12px 0;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .listing-review-card:first-of-type {
+    border-top: none;
+    padding-top: 0;
+  }
+  
+  .listing-review-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  
+  .listing-review-author-block {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .listing-review-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary, #007bff) 0%, #6610f2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .listing-review-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .listing-review-author-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .listing-review-author-name {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .listing-review-date {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  
+  .listing-review-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: 12px;
+  }
+  
+  .listing-review-stars {
+    color: #f4b000;
+    font-size: 13px;
+  }
+  
+  .listing-review-rating-value {
+    color: var(--text-muted);
+  }
+  
+  .listing-review-text {
+    font-size: 14px;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+  
+  /* === Add Review Section === */
+  
+  .listing-add-review-section {
+    margin-top: 16px;
+  }
+  
+  .listing-add-review-wrapper {
+    position: relative;
+  }
+  
+  .listing-add-review-wrapper--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  .listing-add-review-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-sm);
+    background: rgba(249, 250, 251, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    z-index: 2;
+    text-align: center;
+    padding: 16px;
+  }
+  
+  .listing-add-review-lock {
+    font-size: 18px;
+    color: var(--text-muted);
+  }
+  
+  .listing-add-review-overlay p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  
+  .listing-add-review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .listing-rating-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 36px;
+  }
+  
+  .listing-rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 13px;
+  }
+  
+  .listing-rating-label {
+    color: var(--text-main);
+  }
+  
+  .listing-rating-stars {
+    display: inline-flex;
+    gap: 2px;
+  }
+  
+  .listing-rating-star {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    font-size: 16px;
+    color: #d1d5db;
+  }
+  
+  .listing-rating-star--active {
+    color: #f4b000;
+  }
+  
+  .listing-add-review-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .listing-add-review-submit {
+    margin-top: 4px;
+    align-self: flex-start;
+    padding-inline: 1.4rem;
+  }
+  
+  /* Responsive tweaks */
+  
+  @media (max-width: 960px) {
+    .listing-reviews-summary-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  
+    .listing-rating-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  
+    .listing-review-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .listing-review-rating {
+      align-items: flex-start;
+    }
+  }
+
+  .listing-reviews-view-all {
+    margin-top: 10px;
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 13px;
+    color: var(--secondary);
+    cursor: pointer;
+  }
+  .listing-reviews-view-all:hover {
+    text-decoration: underline;
+  }
+  
+  .listing-reviews-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .listing-reviews-page-title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .listing-reviews-back-btn {
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .listing-reviews-back-btn:hover {
+    color: var(--text-main);
+  }
+  
+  
+  

@@ -1,0 +1,85 @@
+# =============================================================================
+# Docker Ignore File for Nomad Cafe Frontend
+# =============================================================================
+# Files and directories to exclude from Docker build context
+# This speeds up builds and reduces image size
+# =============================================================================
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output (we build inside Docker)
+dist/
+build/
+.next/
+out/
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Documentation
+*.md
+!README.md
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.docker/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+Jenkinsfile
+
+# E2E tests (not needed in production image)
+e2e/
+playwright.config.ts
+
+# Misc
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.temp
+
+# TypeScript cache
+*.tsbuildinfo
+
+# ESLint cache
+.eslintcache
+
+# Storybook (if used)
+storybook-static/

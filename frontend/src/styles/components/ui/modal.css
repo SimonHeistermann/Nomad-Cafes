@@ -1,0 +1,117 @@
+/* Modal Component Styles */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.modal--sm {
+  max-width: 400px;
+}
+
+.modal--md {
+  max-width: 500px;
+}
+
+.modal--lg {
+  max-width: 640px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border, #dee2e6);
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main, #212529);
+  margin: 0;
+}
+
+.modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--text-muted, #6c757d);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: var(--bg-muted, #f8f9fa);
+  color: var(--text-main, #212529);
+}
+
+.modal-content {
+  padding: 1.5rem;
+}
+
+/* Modal Messages */
+.modal-error,
+.modal-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.modal-error {
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid var(--danger, #dc3545);
+  color: var(--danger, #dc3545);
+}
+
+.modal-success {
+  background-color: rgba(40, 167, 69, 0.1);
+  border: 1px solid var(--success, #28a745);
+  color: var(--success, #28a745);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .modal-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal {
+    max-height: 90vh;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .modal--sm,
+  .modal--md,
+  .modal--lg {
+    max-width: 100%;
+  }
+}

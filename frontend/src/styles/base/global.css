@@ -1,0 +1,82 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-main);
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-main);
+}
+
+h1 {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-heading);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-heading);
+}
+
+h3 {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-heading);
+}
+
+h4 {
+    font-size: var(--fs-h4);
+}
+
+h5 {
+    font-size: var(--fs-h5);
+}
+
+h6 {
+    font-size: var(--fs-h6);
+}
+
+p {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--text-muted);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-foreground);
+}
+
+.app-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}

@@ -1,0 +1,330 @@
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    transition:
+      background-color 0.25s ease,
+      box-shadow 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease,
+      backdrop-filter 0.25s ease;
+  }
+  
+  /* Standard: hell, wie bisher */
+  .site-header--solid {
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  /* Ganz oben über dem Hero: komplett transparent */
+  .site-header--transparent {
+    background: transparent;
+    box-shadow: none;
+  }
+  
+  /* 🔥 NEU: gescrollerter Zustand über Content */
+  .site-header--glass {
+    background: rgba(15, 23, 42, 0.22); /* dunkles Blau, halbtransparent */
+    backdrop-filter: saturate(180%) blur(4px);
+    -webkit-backdrop-filter: saturate(180%) blur(4px); /* Safari */
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+  }
+  
+  /* Left side */
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  
+  .header-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+  
+  .header-logo-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .header-logo-text {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-main);
+  }
+  
+  /* Nav */
+  
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .header-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0 0 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent; /* Fallback */
+    transition: color 0.15s ease;
+  }
+  
+  .header-nav-link:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+  }
+  
+  .header-nav-label {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .header-nav-underline {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 999px;
+    pointer-events: none;
+  }
+  
+  .header-nav-link:hover {
+    color: var(--text-main);
+  }
+  
+  .header-nav-link--active {
+    color: var(--text-main);
+    border-bottom-color: transparent; /* Unterline kommt von Framer Motion */
+  }
+  
+  /* Right side (auth / user) */
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  /* User Menu */
+  
+  .header-user {
+    position: relative;
+  }
+  
+  .header-user-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: transparent;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    padding: 3px 10px 3px 3px;
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  
+  .header-user-button:hover {
+    background: rgba(15, 23, 42, 0.02);
+    border-color: var(--border);
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .header-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary, #007bff) 0%, #6610f2 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .header-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .header-user-name {
+    font-size: 0.9rem;
+    color: var(--text-main);
+  }
+  
+  .header-user-chevron {
+    font-size: 16px;
+    color: var(--text-muted);
+  }
+  
+  /* User dropdown */
+  
+  .header-user-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 200px;
+    padding: 8px;
+    border-radius: 12px;
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-medium);
+    z-index: 30;
+  }
+  
+  .header-user-menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 8px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: var(--fs-small);
+    color: #374151 !important; /* Always dark text on white dropdown */
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.12s ease, color 0.12s ease;
+  }
+
+  .header-user-menu-item:hover {
+    background: #f3f4f6;
+    color: #1f2937 !important; /* Dark text on hover */
+  }
+
+  .header-user-menu-item:visited,
+  .header-user-menu-item:active {
+    color: #374151 !important;
+  }
+  
+  .header-user-menu-item--danger {
+    color: var(--destructive) !important;
+  }
+
+  .header-user-menu-item--danger:hover {
+    background: rgba(248, 113, 113, 0.08);
+    color: var(--destructive) !important;
+  }
+  
+  .header-user-menu-icon {
+    font-size: 16px;
+  }
+  
+  .header-user-menu-divider {
+    height: 1px;
+    margin: 4px 0;
+    background: var(--border);
+  }
+  
+  /* Farb-Overrides für transparenten Header über dem Hero-Bild
+     UND für den "Glass"-Zustand beim Scrollen */
+  
+  .site-header--transparent .header-logo-text,
+  .site-header--glass .header-logo-text {
+    color: #f9fafb;
+  }
+  
+  .site-header--transparent .header-nav-link,
+  .site-header--glass .header-nav-link {
+    color: rgba(248, 250, 252, 0.85);
+  }
+  
+  .site-header--transparent .header-nav-link--active,
+  .site-header--transparent .header-nav-link:hover,
+  .site-header--glass .header-nav-link--active,
+  .site-header--glass .header-nav-link:hover {
+    color: #ffffff;
+  }
+  
+  .site-header--transparent .header-nav-underline,
+  .site-header--glass .header-nav-underline {
+    background: var(--primary);
+  }
+  
+  .site-header--transparent .btn-text,
+  .site-header--glass .btn-text {
+    color: rgba(248, 250, 252, 0.9);
+  }
+  
+  .site-header--transparent .btn-text:hover,
+  .site-header--glass .btn-text:hover {
+    color: #ffffff;
+  }
+  
+  .site-header--transparent .btn-primary,
+  .site-header--glass .btn-primary {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .site-header--transparent .header-user-name,
+  .site-header--glass .header-user-name {
+    color: #f9fafb;
+  }
+  
+  .site-header--transparent .header-user-chevron,
+  .site-header--glass .header-user-chevron {
+    color: rgba(248, 250, 252, 0.75);
+  }
+
+  /* Language Switcher auf transparentem/glass Header */
+  .site-header--transparent .language-switcher-button,
+  .site-header--glass .language-switcher-button {
+    color: rgba(248, 250, 252, 0.9);
+    border-color: rgba(248, 250, 252, 0.2);
+  }
+
+  .site-header--transparent .language-switcher-button:hover,
+  .site-header--glass .language-switcher-button:hover {
+    color: #ffffff;
+    border-color: rgba(248, 250, 252, 0.4);
+    background: rgba(248, 250, 252, 0.05);
+  }
+
+  /* Responsive: Usernamen auf kleinen Screens ausblenden */
+  
+  @media (max-width: 768px) {
+    .header-user-name,
+    .header-user-chevron {
+      display: none;
+    }
+  
+    .header-user-button {
+      padding-right: 3px;
+    }
+  }
+  

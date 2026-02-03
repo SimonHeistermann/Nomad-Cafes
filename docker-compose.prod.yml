@@ -1,0 +1,199 @@
+# =============================================================================
+# Docker Compose Production Configuration for Nomad Cafe
+# =============================================================================
+#
+# Usage:
+#   docker-compose -f docker-compose.prod.yml up -d
+#
+# Required environment variables (set in .env):
+#   POSTGRES_PASSWORD     - PostgreSQL password
+#   DJANGO_SECRET_KEY     - Django secret key
+#   DJANGO_ALLOWED_HOSTS  - Comma-separated allowed hosts
+#
+# Optional environment variables:
+#   SENTRY_DSN            - Sentry DSN for error tracking
+#   RESEND_API_KEY        - Resend API key for emails
+#
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # PostgreSQL Database
+  # ---------------------------------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: nomadcafe-db
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-nomadcafe}
+      POSTGRES_USER: ${POSTGRES_USER:-nomadcafe}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nomadcafe} -d ${POSTGRES_DB:-nomadcafe}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - backend
+
+  # ---------------------------------------------------------------------------
+  # Redis (Caching & Background Jobs)
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: nomadcafe-redis
+    restart: always
+    volumes:
+      - redisdata:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend
+
+  # ---------------------------------------------------------------------------
+  # Django API Server
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nomadcafe-api
+    restart: always
+    environment:
+      DJANGO_ENV: production
+      DJANGO_DEBUG: "false"
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?DJANGO_SECRET_KEY is required}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost}
+      DATABASE_URL: postgres://${POSTGRES_USER:-nomadcafe}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-nomadcafe}
+      REDIS_URL: redis://redis:6379/0
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-https://localhost}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:-https://localhost}
+      FRONTEND_URL: ${FRONTEND_URL:-https://localhost}
+      SENTRY_DSN: ${SENTRY_DSN:-}
+      DJANGO_LOG_FORMAT: json
+      DJANGO_LOG_LEVEL: ${DJANGO_LOG_LEVEL:-INFO}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      EMAIL_BACKEND: ${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
+    expose:
+      - "8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - backend
+
+  # ---------------------------------------------------------------------------
+  # RQ Worker (Background Jobs: Email, Async Tasks)
+  # ---------------------------------------------------------------------------
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nomadcafe-worker
+    restart: always
+    command: python manage.py rqworker default email
+    environment:
+      DJANGO_ENV: production
+      DJANGO_DEBUG: "false"
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DATABASE_URL: postgres://${POSTGRES_USER:-nomadcafe}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-nomadcafe}
+      REDIS_URL: redis://redis:6379/0
+      SENTRY_DSN: ${SENTRY_DSN:-}
+      DJANGO_LOG_FORMAT: json
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      EMAIL_BACKEND: ${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - backend
+
+  # ---------------------------------------------------------------------------
+  # Frontend (React/Vite Static Files served by Nginx)
+  # ---------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-/api}
+    container_name: nomadcafe-frontend
+    restart: always
+    expose:
+      - "80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - frontend
+
+  # ---------------------------------------------------------------------------
+  # Nginx Reverse Proxy (SSL Termination, Load Balancing)
+  # ---------------------------------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    container_name: nomadcafe-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    depends_on:
+      - api
+      - frontend
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - frontend
+      - backend
+
+  # ---------------------------------------------------------------------------
+  # Certbot (SSL Certificate Management)
+  # ---------------------------------------------------------------------------
+  certbot:
+    image: certbot/certbot
+    container_name: nomadcafe-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    networks:
+      - frontend
+
+volumes:
+  pgdata:
+    name: nomadcafe-pgdata-prod
+  redisdata:
+    name: nomadcafe-redisdata-prod
+
+networks:
+  frontend:
+    name: nomadcafe-frontend
+  backend:
+    name: nomadcafe-backend

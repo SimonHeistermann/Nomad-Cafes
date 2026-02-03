@@ -1,0 +1,64 @@
+.cta-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, var(--secondary) 0%, hsl(215, 50%, 35%) 100%);
+  color: white;
+  position: relative;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 70px 0;
+  }
+}
+
+.cta-box {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .cta-title {
+    font-size: 2rem;
+  }
+}
+
+.cta-subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2.5rem 0;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 576px) {
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

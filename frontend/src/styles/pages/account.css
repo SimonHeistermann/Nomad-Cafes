@@ -1,0 +1,161 @@
+/* Account Component Styles */
+
+.account-overview {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.account-overview-header {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.account-avatar-section {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.account-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border, #dee2e6);
+}
+
+.account-avatar--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary, #007bff) 0%, #6610f2 100%);
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.account-avatar-edit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: white;
+  border: 2px solid var(--border, #dee2e6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-avatar-edit:hover {
+  background-color: var(--bg-muted, #f8f9fa);
+  transform: scale(1.05);
+}
+
+.account-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-name {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--text-main, #212529);
+}
+
+.account-bio {
+  font-size: 1rem;
+  color: var(--text-muted, #6c757d);
+  margin: 0 0 1rem;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.account-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted, #6c757d);
+}
+
+.account-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: var(--bg-muted, #f8f9fa);
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.account-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.account-stat-value {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary, #007bff);
+  margin-bottom: 0.25rem;
+}
+
+.account-stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted, #6c757d);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.account-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .account-overview {
+    padding: 1rem;
+  }
+
+  .account-overview-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .account-name {
+    font-size: 1.5rem;
+  }
+
+  .account-stats {
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .account-stat-value {
+    font-size: 1.5rem;
+  }
+
+  .account-actions {
+    width: 100%;
+  }
+
+  .account-actions > * {
+    flex: 1;
+  }
+}

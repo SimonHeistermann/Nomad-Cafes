@@ -1,0 +1,97 @@
+/* Textarea Component Styles */
+
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.textarea-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-main, #212529);
+}
+
+.textarea-required {
+  color: var(--danger, #dc3545);
+  margin-left: 0.25rem;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.625rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-main, #212529);
+  background-color: white;
+  border: 1px solid var(--border, #dee2e6);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #1f2937;
+  box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.05);
+}
+
+.textarea::placeholder {
+  color: var(--text-muted, #6c757d);
+}
+
+.textarea--error {
+  border-color: var(--danger, #dc3545);
+}
+
+.textarea--error:focus {
+  border-color: var(--danger, #dc3545);
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.textarea--disabled {
+  background-color: var(--bg-muted, #f8f9fa);
+  cursor: not-allowed;
+  opacity: 0.6;
+  resize: none;
+}
+
+/* Message slot - always rendered to prevent layout shift */
+.textarea-message-slot {
+  min-height: 1.25rem; /* Reserve space for one line of text */
+  margin-top: 0.125rem;
+}
+
+.textarea-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--danger, #dc3545);
+  margin: 0;
+  animation: error-fade-in 0.2s ease-out;
+}
+
+.textarea-helper {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--text-muted, #6c757d);
+  margin: 0;
+}
+
+.textarea-message-placeholder {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin: 0;
+  visibility: hidden;
+  min-height: 1.25rem;
+}
+
+@keyframes error-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
