@@ -46,7 +46,7 @@ class ContactView(APIView):
         if settings.ENVIRONMENT == "production":
             try:
                 send_mail(
-                    subject=f"[Nomad Cafe] {data['subject']}: {data['name']}",
+                    subject=f"[Nomad Cafes] {data['subject']}: {data['name']}",
                     message=f"From: {data['name']} <{data['email']}>\n\n{data['message']}",
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[settings.CONTACT_EMAIL],

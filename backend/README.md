@@ -1,4 +1,4 @@
-# Nomad Cafe API
+# Nomad Cafes API
 
 A RESTful API for discovering cafes optimized for remote work and digital nomads.
 

@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Playwright E2E test configuration for Nomad Cafe.
+ * Playwright E2E test configuration for Nomad Cafes.
  *
  * To run tests:
  * - Start backend: cd backend && python manage.py runserver

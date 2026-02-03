@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# Smoke Test Script for Nomad Cafe Production Deployment
+# Smoke Test Script for Nomad Cafes Production Deployment
 # =============================================================================
 #
 # This script runs basic health checks to verify the deployment is working.
@@ -174,7 +174,7 @@ test_response_time() {
 
 # Header
 echo ""
-echo -e "${GREEN}=== Nomad Cafe Smoke Tests ===${NC}"
+echo -e "${GREEN}=== Nomad Cafes Smoke Tests ===${NC}"
 echo ""
 echo "Base URL: $BASE_URL"
 echo ""

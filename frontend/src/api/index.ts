@@ -1,7 +1,7 @@
 /**
  * API Client
  *
- * Centralized API layer for the Nomad Cafe application.
+ * Centralized API layer for the Nomad Cafes application.
  * Provides type-safe methods for interacting with the backend.
  *
  * Authentication is handled via httpOnly cookies (not localStorage tokens).

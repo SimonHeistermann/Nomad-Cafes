@@ -1,5 +1,5 @@
 # =============================================================================
-# Multi-Stage Dockerfile for Nomad Cafe Frontend
+# Multi-Stage Dockerfile for Nomad Cafes Frontend
 # =============================================================================
 #
 # Stage 1: Build the React application

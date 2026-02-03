@@ -1,4 +1,4 @@
-# Nomad Cafe
+# Nomad Cafes
 
 A modern web application for discovering cafes optimized for remote work and digital nomads.
 

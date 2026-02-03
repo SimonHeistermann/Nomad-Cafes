@@ -1,5 +1,5 @@
 # =============================================================================
-# Docker Ignore File for Nomad Cafe Frontend
+# Docker Ignore File for Nomad Cafes Frontend
 # =============================================================================
 # Files and directories to exclude from Docker build context
 # This speeds up builds and reduces image size

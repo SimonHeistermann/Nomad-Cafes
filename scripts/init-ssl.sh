@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# SSL Certificate Initialization Script for Nomad Cafe
+# SSL Certificate Initialization Script for Nomad Cafes
 # =============================================================================
 #
 # This script initializes SSL certificates using Let's Encrypt (certbot).
@@ -37,7 +37,7 @@ if [ -z "$DOMAIN" ] || [ -z "$EMAIL" ]; then
     exit 1
 fi
 
-echo -e "${GREEN}=== Nomad Cafe SSL Initialization ===${NC}"
+echo -e "${GREEN}=== Nomad Cafes SSL Initialization ===${NC}"
 echo ""
 echo "Domain: $DOMAIN"
 echo "Email:  $EMAIL"
@@ -62,7 +62,7 @@ server {
     }
 
     location / {
-        return 200 'Nomad Cafe - SSL initialization in progress';
+        return 200 'Nomad Cafes - SSL initialization in progress';
         add_header Content-Type text/plain;
     }
 }
@@ -89,7 +89,7 @@ docker-compose -f docker-compose.prod.yml run --rm certbot certonly \
 echo -e "${YELLOW}Restoring full nginx configuration...${NC}"
 cat > nginx/conf.d/default.conf << FULLCONF
 # =============================================================================
-# Server Configuration for Nomad Cafe
+# Server Configuration for Nomad Cafes
 # =============================================================================
 
 # HTTP server - redirect to HTTPS

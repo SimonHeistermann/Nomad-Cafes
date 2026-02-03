@@ -1,4 +1,4 @@
-# Nomad Cafe
+# Nomad Cafes
 
 A full-stack web application for discovering cafes perfect for remote work and digital nomads. Find cafes with wifi, power outlets, quiet atmosphere, and great coffee.
 

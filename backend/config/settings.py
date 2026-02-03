@@ -258,7 +258,7 @@ REST_FRAMEWORK = {
 # OpenAPI / Swagger (drf-spectacular)
 # -----------------------------------------------------------------------------
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Nomad Cafe API",
+    "TITLE": "Nomad Cafes API",
     "DESCRIPTION": "API for discovering cafes optimized for remote work and digital nomads.",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,

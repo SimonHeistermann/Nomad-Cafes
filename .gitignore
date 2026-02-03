@@ -1,5 +1,5 @@
 # =============================================================================
-# Nomad Cafe Monorepo - Root .gitignore
+# Nomad Cafes Monorepo - Root .gitignore
 # =============================================================================
 # This file covers root-level and shared patterns.
 # Frontend and Backend have their own .gitignore files for specific patterns.
