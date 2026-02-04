@@ -14,9 +14,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/change-password/
-         *
-         *     Change password for authenticated user.
+         * Change password
+         * @description Changes the password for the authenticated user. Requires current password.
          */
         post: operations["auth_change_password_create"];
         delete?: never;
@@ -35,9 +34,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/login/
-         *
-         *     Authenticate user and return tokens via cookies.
+         * Login user
+         * @description Authenticate user with email and password. Sets httpOnly auth cookies on success.
          */
         post: operations["auth_login_create"];
         delete?: never;
@@ -56,9 +54,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/logout/
-         *
-         *     Logout user by blacklisting refresh token and clearing cookies.
+         * Logout user
+         * @description Blacklists the refresh token and clears auth cookies.
          */
         post: operations["auth_logout_create"];
         delete?: never;
@@ -75,8 +72,8 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * @description GET /api/auth/me/ - Get current user profile
-         *     PATCH /api/auth/me/ - Update current user profile
+         * Get current user profile
+         * @description Returns the authenticated user's profile information.
          */
         get: operations["auth_me_retrieve"];
         /**
@@ -89,8 +86,8 @@ export interface paths {
         options?: never;
         head?: never;
         /**
-         * @description GET /api/auth/me/ - Get current user profile
-         *     PATCH /api/auth/me/ - Update current user profile
+         * Update current user profile
+         * @description Updates the authenticated user's profile. Only name, bio, and avatar_url can be updated.
          */
         patch: operations["auth_me_partial_update"];
         trace?: never;
@@ -105,10 +102,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/password-reset/
-         *
-         *     Request password reset email.
-         *     Always returns success to prevent email enumeration.
+         * Request password reset
+         * @description Sends a password reset email if the account exists. Always returns success to prevent email enumeration.
          */
         post: operations["auth_password_reset_create"];
         delete?: never;
@@ -127,9 +122,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/password-reset/confirm/
-         *
-         *     Confirm password reset with token and new password.
+         * Confirm password reset
+         * @description Resets the user's password using the token from the reset email.
          */
         post: operations["auth_password_reset_confirm_create"];
         delete?: never;
@@ -148,10 +142,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/register/
-         *
-         *     Register a new user account.
-         *     Returns user data and sets auth cookies.
+         * Register a new user
+         * @description Create a new user account. Returns user data and sets httpOnly auth cookies.
          */
         post: operations["auth_register_create"];
         delete?: never;
@@ -170,10 +162,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/resend-verification/
-         *
-         *     Resend email verification.
-         *     Always returns success to prevent email enumeration.
+         * Resend verification email
+         * @description Resends the email verification link. Always returns success to prevent email enumeration.
          */
         post: operations["auth_resend_verification_create"];
         delete?: never;
@@ -192,9 +182,8 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/token/refresh/
-         *
-         *     Refresh access token using refresh token from cookie.
+         * Refresh access token
+         * @description Refreshes the access token using the refresh token from the cookie. Sets new cookies on success.
          */
         post: operations["auth_token_refresh_create"];
         delete?: never;
@@ -213,88 +202,14 @@ export interface paths {
         get?: never;
         put?: never;
         /**
-         * @description POST /api/auth/verify-email/
-         *
-         *     Verify email address with token.
+         * Verify email address
+         * @description Verifies the user's email address using the token from the verification email.
          */
         post: operations["auth_verify_email_create"];
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
-        trace?: never;
-    };
-    "/api/bookmarks/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * @description ViewSet for user bookmarks.
-         *
-         *     Endpoints:
-         *     - GET /api/bookmarks/ - List user's bookmarks
-         *     - POST /api/bookmarks/ - Add bookmark (body: {cafe_id: uuid})
-         *     - DELETE /api/bookmarks/{cafe_id}/ - Remove bookmark
-         *     - GET /api/bookmarks/{cafe_id}/ - Check if bookmarked
-         */
-        get: operations["bookmarks_list"];
-        put?: never;
-        /**
-         * @description ViewSet for user bookmarks.
-         *
-         *     Endpoints:
-         *     - GET /api/bookmarks/ - List user's bookmarks
-         *     - POST /api/bookmarks/ - Add bookmark (body: {cafe_id: uuid})
-         *     - DELETE /api/bookmarks/{cafe_id}/ - Remove bookmark
-         *     - GET /api/bookmarks/{cafe_id}/ - Check if bookmarked
-         */
-        post: operations["bookmarks_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/bookmarks/{cafe_id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * @description Check if a cafe is bookmarked.
-         *     Returns {"is_bookmarked": true/false}
-         */
-        get: operations["bookmarks_retrieve"];
-        /**
-         * @description ViewSet for user bookmarks.
-         *
-         *     Endpoints:
-         *     - GET /api/bookmarks/ - List user's bookmarks
-         *     - POST /api/bookmarks/ - Add bookmark (body: {cafe_id: uuid})
-         *     - DELETE /api/bookmarks/{cafe_id}/ - Remove bookmark
-         *     - GET /api/bookmarks/{cafe_id}/ - Check if bookmarked
-         */
-        put: operations["bookmarks_update"];
-        post?: never;
-        /** @description Remove bookmark by cafe_id. */
-        delete: operations["bookmarks_destroy"];
-        options?: never;
-        head?: never;
-        /**
-         * @description ViewSet for user bookmarks.
-         *
-         *     Endpoints:
-         *     - GET /api/bookmarks/ - List user's bookmarks
-         *     - POST /api/bookmarks/ - Add bookmark (body: {cafe_id: uuid})
-         *     - DELETE /api/bookmarks/{cafe_id}/ - Remove bookmark
-         *     - GET /api/bookmarks/{cafe_id}/ - Check if bookmarked
-         */
-        patch: operations["bookmarks_partial_update"];
         trace?: never;
     };
     "/api/cafes/": {
@@ -524,6 +439,79 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/favorites/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description ViewSet for user favorites.
+         *
+         *     Endpoints:
+         *     - GET /api/favorites/ - List user's favorites
+         *     - POST /api/favorites/ - Add favorite (body: {cafe_id: uuid})
+         *     - DELETE /api/favorites/{cafe_id}/ - Remove favorite
+         *     - GET /api/favorites/{cafe_id}/ - Check if favorited
+         */
+        get: operations["favorites_list"];
+        put?: never;
+        /**
+         * @description ViewSet for user favorites.
+         *
+         *     Endpoints:
+         *     - GET /api/favorites/ - List user's favorites
+         *     - POST /api/favorites/ - Add favorite (body: {cafe_id: uuid})
+         *     - DELETE /api/favorites/{cafe_id}/ - Remove favorite
+         *     - GET /api/favorites/{cafe_id}/ - Check if favorited
+         */
+        post: operations["favorites_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/favorites/{cafe_id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description Check if a cafe is favorited.
+         *     Returns {"is_favorited": true/false}
+         */
+        get: operations["favorites_retrieve"];
+        /**
+         * @description ViewSet for user favorites.
+         *
+         *     Endpoints:
+         *     - GET /api/favorites/ - List user's favorites
+         *     - POST /api/favorites/ - Add favorite (body: {cafe_id: uuid})
+         *     - DELETE /api/favorites/{cafe_id}/ - Remove favorite
+         *     - GET /api/favorites/{cafe_id}/ - Check if favorited
+         */
+        put: operations["favorites_update"];
+        post?: never;
+        /** @description Remove favorite by cafe_id. */
+        delete: operations["favorites_destroy"];
+        options?: never;
+        head?: never;
+        /**
+         * @description ViewSet for user favorites.
+         *
+         *     Endpoints:
+         *     - GET /api/favorites/ - List user's favorites
+         *     - POST /api/favorites/ - Add favorite (body: {cafe_id: uuid})
+         *     - DELETE /api/favorites/{cafe_id}/ - Remove favorite
+         *     - GET /api/favorites/{cafe_id}/ - Check if favorited
+         */
+        patch: operations["favorites_partial_update"];
+        trace?: never;
+    };
     "/api/health/": {
         parameters: {
             query?: never;
@@ -534,7 +522,10 @@ export interface paths {
         /**
          * @description GET /api/health/
          *
-         *     Health check endpoint for monitoring.
+         *     Liveness probe - checks if the application is running.
+         *     Use for Kubernetes livenessProbe or load balancer health checks.
+         *
+         *     Returns 200 if the application is alive (even if dependencies are degraded).
          */
         get: operations["health_retrieve"];
         put?: never;
@@ -664,6 +655,35 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/ready/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description GET /api/ready/
+         *
+         *     Readiness probe - checks if the application is ready to receive traffic.
+         *     Use for Kubernetes readinessProbe.
+         *
+         *     Returns 200 only if ALL critical dependencies are healthy.
+         *     Returns 503 if any critical dependency is unavailable.
+         *
+         *     Difference from /health/:
+         *     - /health/ (liveness): Is the app running? (restart if not)
+         *     - /ready/ (readiness): Can the app handle requests? (remove from LB if not)
+         */
+        get: operations["ready_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/reviews/": {
         parameters: {
             query?: never;
@@ -735,11 +755,10 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * @description GET /api/stats/
-         *
-         *     Returns platform statistics.
+         * Get platform statistics
+         * @description Returns aggregate counts of cafes, locations, users, and reviews.
          */
-        get: operations["stats_retrieve"];
+        get: operations["stats_list"];
         put?: never;
         post?: never;
         delete?: never;
@@ -752,18 +771,12 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /** @description Serializer for user bookmarks. */
-        Bookmark: {
-            /** Format: uuid */
-            readonly id: string;
-            readonly cafe: components["schemas"]["CafeList"];
-            /** Format: date-time */
-            readonly created_at: string;
-        };
-        /** @description Serializer for user bookmarks. */
-        BookmarkRequest: {
-            /** Format: uuid */
-            cafe_id: string;
+        /** @description Response containing message and user data (login/register). */
+        AuthSuccessResponse: {
+            /** @description Success message */
+            message: string;
+            /** @description User profile data */
+            user: components["schemas"]["User"];
         };
         /** @description Serializer for creating/updating cafes (admin only). */
         CafeCreateUpdate: {
@@ -803,6 +816,7 @@ export interface components {
             gallery?: unknown;
             category?: components["schemas"]["CategoryEnum"];
             price_level?: components["schemas"]["PriceLevelEnum"];
+            features?: string[];
             /** @description {"wifi": true, "wifi_speed": "50mbps", "power_outlets": true, ...} */
             amenities?: unknown;
             /** @description {"monday": {"open": "08:00", "close": "18:00"}, ...} */
@@ -923,23 +937,23 @@ export interface components {
             opening_hours?: unknown;
             /** @description IANA timezone, inherits from location if empty */
             timezone?: string;
-            /** Format: decimal */
-            rating_avg?: string;
+            /** Format: double */
+            readonly rating_avg: number;
             /** Format: int64 */
             rating_count?: number;
-            /** Format: decimal */
-            rating_wifi?: string;
-            /** Format: decimal */
-            rating_power?: string;
-            /** Format: decimal */
-            rating_noise?: string;
-            /** Format: decimal */
-            rating_coffee?: string;
+            /** Format: double */
+            readonly rating_wifi: number;
+            /** Format: double */
+            readonly rating_power: number;
+            /** Format: double */
+            readonly rating_noise: number;
+            /** Format: double */
+            readonly rating_coffee: number;
             is_featured?: boolean;
             is_verified?: boolean;
             /** @description Show contact form on detail page */
             allows_contact?: boolean;
-            readonly is_bookmarked: string;
+            readonly is_favorited: string;
             readonly owner_name: string;
             /** @description Owner's role, e.g. 'Owner & café designer', 'F&B Manager' */
             owner_role?: string;
@@ -974,12 +988,12 @@ export interface components {
             city: string;
             readonly location_name: string;
             phone?: string;
-            /** Format: decimal */
-            rating_avg?: string;
+            /** Format: double */
+            readonly rating_avg: number;
             /** Format: int64 */
             rating_count?: number;
             is_featured?: boolean;
-            readonly is_bookmarked: string;
+            readonly is_favorited: string;
             readonly features: unknown[];
         };
         /**
@@ -1004,8 +1018,6 @@ export interface components {
             price_level?: components["schemas"]["PriceLevelEnum"];
             city: string;
             phone?: string;
-            /** Format: decimal */
-            rating_avg?: string;
             /** Format: int64 */
             rating_count?: number;
             is_featured?: boolean;
@@ -1019,8 +1031,8 @@ export interface components {
             /** Format: uri */
             thumbnail_url?: string;
             city: string;
-            /** Format: decimal */
-            rating_avg?: string;
+            /** Format: double */
+            readonly rating_avg: number;
         };
         /**
          * @description * `cafe` - Café
@@ -1032,6 +1044,11 @@ export interface components {
          * @enum {string}
          */
         CategoryEnum: "cafe" | "coworking" | "restaurant" | "hotel_cafe" | "library" | "other";
+        /** @description Change password for authenticated user. */
+        ChangePasswordRequest: {
+            current_password: string;
+            new_password: string;
+        };
         /** @description Serializer for contact form submissions. */
         Contact: {
             name: string;
@@ -1047,6 +1064,34 @@ export interface components {
             email: string;
             subject: components["schemas"]["SubjectEnum"];
             message: string;
+        };
+        /** @description Verify email with token. */
+        EmailVerifyRequest: {
+            token: string;
+        };
+        /** @description Standard error response format. */
+        ErrorResponse: {
+            /** @description Error message */
+            message: string;
+            /** @description Error code for programmatic handling */
+            code?: string;
+            /** @description Field-specific errors */
+            details?: {
+                [key: string]: unknown;
+            };
+        };
+        /** @description Serializer for user favorites. */
+        Favorite: {
+            /** Format: uuid */
+            readonly id: string;
+            readonly cafe: components["schemas"]["CafeList"];
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        /** @description Serializer for user favorites. */
+        FavoriteRequest: {
+            /** Format: uuid */
+            cafe_id: string;
         };
         /** @description Serializer for health check response. */
         HealthCheck: {
@@ -1152,20 +1197,20 @@ export interface components {
             cafe_count?: number;
             is_featured?: boolean;
         };
-        PaginatedBookmarkList: {
-            /** @example 123 */
-            count: number;
-            /**
-             * Format: uri
-             * @example http://api.example.org/accounts/?page=4
-             */
-            next?: string | null;
-            /**
-             * Format: uri
-             * @example http://api.example.org/accounts/?page=2
-             */
-            previous?: string | null;
-            results: components["schemas"]["Bookmark"][];
+        /**
+         * @description User login serializer.
+         *
+         *     Validates credentials and returns authenticated user.
+         */
+        LoginRequest: {
+            /** Format: email */
+            email: string;
+            password: string;
+        };
+        /** @description Generic message-only response. */
+        MessageResponse: {
+            /** @description Status message */
+            message: string;
         };
         PaginatedCafeListList: {
             /** @example 123 */
@@ -1181,6 +1226,21 @@ export interface components {
              */
             previous?: string | null;
             results: components["schemas"]["CafeList"][];
+        };
+        PaginatedFavoriteList: {
+            /** @example 123 */
+            count: number;
+            /**
+             * Format: uri
+             * @example http://api.example.org/accounts/?page=4
+             */
+            next?: string | null;
+            /**
+             * Format: uri
+             * @example http://api.example.org/accounts/?page=2
+             */
+            previous?: string | null;
+            results: components["schemas"]["Favorite"][];
         };
         PaginatedLocationListList: {
             /** @example 123 */
@@ -1227,10 +1287,15 @@ export interface components {
             previous?: string | null;
             results: components["schemas"]["UserReview"][];
         };
-        /** @description Serializer for user bookmarks. */
-        PatchedBookmarkRequest: {
-            /** Format: uuid */
-            cafe_id?: string;
+        /** @description Confirm password reset with token and new password. */
+        PasswordResetConfirmRequest: {
+            token: string;
+            new_password: string;
+        };
+        /** @description Request password reset via email. */
+        PasswordResetRequestRequest: {
+            /** Format: email */
+            email: string;
         };
         /** @description Serializer for creating/updating cafes (admin only). */
         PatchedCafeCreateUpdateRequest: {
@@ -1286,6 +1351,11 @@ export interface components {
             owner?: string | null;
             /** @description Owner's role, e.g. 'Owner & café designer', 'F&B Manager' */
             owner_role?: string;
+        };
+        /** @description Serializer for user favorites. */
+        PatchedFavoriteRequest: {
+            /** Format: uuid */
+            cafe_id?: string;
         };
         /** @description Serializer for creating/updating locations (admin only). */
         PatchedLocationCreateUpdateRequest: {
@@ -1343,6 +1413,25 @@ export interface components {
          * @enum {integer}
          */
         PriceLevelEnum: 1 | 2 | 3 | 4;
+        /**
+         * @description User registration serializer.
+         *
+         *     Validates:
+         *     - Email uniqueness
+         *     - Password strength (Django validators)
+         *     - Name presence
+         */
+        RegisterRequest: {
+            /** Format: email */
+            email: string;
+            password: string;
+            name?: string;
+        };
+        /** @description Resend email verification. */
+        ResendVerificationRequest: {
+            /** Format: email */
+            email: string;
+        };
         /**
          * @description Serializer for creating a review.
          *     User and cafe are set from context.
@@ -1455,6 +1544,20 @@ export interface components {
          */
         RoleEnum: "user" | "owner" | "admin";
         /**
+         * @description Serializer for platform statistics.
+         *     Used by the stats endpoint for homepage counters.
+         */
+        Stats: {
+            /** @description Total number of active cafes */
+            cafes: number;
+            /** @description Total number of active locations */
+            locations: number;
+            /** @description Total number of active users */
+            users: number;
+            /** @description Total number of active reviews */
+            reviews: number;
+        };
+        /**
          * @description * `general` - General Inquiry
          *     * `support` - Technical Support
          *     * `feedback` - Feedback
@@ -1473,6 +1576,7 @@ export interface components {
             readonly id: string;
             readonly name: string;
             slug: string;
+            country_code?: string;
             /** Format: uri */
             thumbnail_url?: string;
             /** Format: int64 */
@@ -1500,14 +1604,6 @@ export interface components {
             readonly is_email_verified: boolean;
             /** Format: date-time */
             readonly created_at: string;
-        };
-        /** @description Serializer for updating user profile. */
-        UserProfileUpdate: {
-            name?: string;
-            /** @description Short bio or description */
-            bio?: string;
-            /** Format: uri */
-            avatar_url?: string;
         };
         /**
          * @description Public user representation.
@@ -1565,14 +1661,37 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ChangePasswordRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["ChangePasswordRequest"];
+                "multipart/form-data": components["schemas"]["ChangePasswordRequest"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["MessageResponse"];
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -1583,14 +1702,37 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LoginRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["LoginRequest"];
+                "multipart/form-data": components["schemas"]["LoginRequest"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["AuthSuccessResponse"];
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -1603,12 +1745,21 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["MessageResponse"];
+                };
+            };
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -1627,6 +1778,14 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["User"];
+                };
+            };
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -1676,7 +1835,23 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserProfileUpdate"];
+                    "application/json": components["schemas"]["User"];
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -1688,14 +1863,37 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PasswordResetRequestRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["PasswordResetRequestRequest"];
+                "multipart/form-data": components["schemas"]["PasswordResetRequestRequest"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["MessageResponse"];
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -1706,14 +1904,29 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PasswordResetConfirmRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["PasswordResetConfirmRequest"];
+                "multipart/form-data": components["schemas"]["PasswordResetConfirmRequest"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["MessageResponse"];
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -1724,14 +1937,37 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegisterRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["RegisterRequest"];
+                "multipart/form-data": components["schemas"]["RegisterRequest"];
+            };
+        };
         responses: {
-            /** @description No response body */
-            200: {
+            201: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["AuthSuccessResponse"];
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -1742,14 +1978,37 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ResendVerificationRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["ResendVerificationRequest"];
+                "multipart/form-data": components["schemas"]["ResendVerificationRequest"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["MessageResponse"];
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -1762,12 +2021,21 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["MessageResponse"];
+                };
+            };
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
             };
         };
     };
@@ -1778,103 +2046,11 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    bookmarks_list: {
-        parameters: {
-            query?: {
-                /** @description Which field to use when ordering the results. */
-                ordering?: string;
-                /** @description A page number within the paginated result set. */
-                page?: number;
-                /** @description A search term. */
-                search?: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PaginatedBookmarkList"];
-                };
-            };
-        };
-    };
-    bookmarks_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["BookmarkRequest"];
-                "application/x-www-form-urlencoded": components["schemas"]["BookmarkRequest"];
-                "multipart/form-data": components["schemas"]["BookmarkRequest"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Bookmark"];
-                };
-            };
-        };
-    };
-    bookmarks_retrieve: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                cafe_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Bookmark"];
-                };
-            };
-        };
-    };
-    bookmarks_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                cafe_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["BookmarkRequest"];
-                "application/x-www-form-urlencoded": components["schemas"]["BookmarkRequest"];
-                "multipart/form-data": components["schemas"]["BookmarkRequest"];
+                "application/json": components["schemas"]["EmailVerifyRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["EmailVerifyRequest"];
+                "multipart/form-data": components["schemas"]["EmailVerifyRequest"];
             };
         };
         responses: {
@@ -1883,54 +2059,15 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Bookmark"];
+                    "application/json": components["schemas"]["MessageResponse"];
                 };
             };
-        };
-    };
-    bookmarks_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                cafe_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    bookmarks_partial_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                cafe_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: {
-            content: {
-                "application/json": components["schemas"]["PatchedBookmarkRequest"];
-                "application/x-www-form-urlencoded": components["schemas"]["PatchedBookmarkRequest"];
-                "multipart/form-data": components["schemas"]["PatchedBookmarkRequest"];
-            };
-        };
-        responses: {
-            200: {
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Bookmark"];
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -2279,6 +2416,152 @@ export interface operations {
             };
         };
     };
+    favorites_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedFavoriteList"];
+                };
+            };
+        };
+    };
+    favorites_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FavoriteRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["FavoriteRequest"];
+                "multipart/form-data": components["schemas"]["FavoriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Favorite"];
+                };
+            };
+        };
+    };
+    favorites_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                cafe_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Favorite"];
+                };
+            };
+        };
+    };
+    favorites_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                cafe_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FavoriteRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["FavoriteRequest"];
+                "multipart/form-data": components["schemas"]["FavoriteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Favorite"];
+                };
+            };
+        };
+    };
+    favorites_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                cafe_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    favorites_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                cafe_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedFavoriteRequest"];
+                "application/x-www-form-urlencoded": components["schemas"]["PatchedFavoriteRequest"];
+                "multipart/form-data": components["schemas"]["PatchedFavoriteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Favorite"];
+                };
+            };
+        };
+    };
     health_retrieve: {
         parameters: {
             query?: never;
@@ -2466,6 +2749,24 @@ export interface operations {
             };
         };
     };
+    ready_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     reviews_list: {
         parameters: {
             query?: {
@@ -2532,7 +2833,7 @@ export interface operations {
             };
         };
     };
-    stats_retrieve: {
+    stats_list: {
         parameters: {
             query?: never;
             header?: never;
@@ -2541,12 +2842,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Stats"][];
+                };
             };
         };
     };
