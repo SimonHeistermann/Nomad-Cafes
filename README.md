@@ -43,16 +43,14 @@ nomad-cafe/
 │   ├── config/             # Django settings
 │   └── templates/          # Email templates
 │
-├── frontend/               # React SPA
-│   ├── src/
-│   │   ├── api/           # API client layer
-│   │   ├── components/    # React components
-│   │   ├── contexts/      # Global state
-│   │   ├── pages/         # Page components
-│   │   └── lib/           # Utilities & i18n
-│   └── e2e/               # Playwright tests
-│
-└── docs/                   # Documentation
+└── frontend/               # React SPA
+    ├── src/
+    │   ├── api/           # API client layer
+    │   ├── components/    # React components
+    │   ├── contexts/      # Global state
+    │   ├── pages/         # Page components
+    │   └── lib/           # Utilities & i18n
+    └── e2e/               # Playwright tests
 ```
 
 ## Quick Start
@@ -134,21 +132,6 @@ cd frontend
 npm run lint
 ```
 
-## Documentation
-
-Detailed documentation is available in the `docs/` folder:
-
-| Document | Description |
-|----------|-------------|
-| [Backend Architecture](docs/ARCHITECTURE_BACKEND.md) | Backend structure, patterns, and APIs |
-| [Frontend Architecture](docs/ARCHITECTURE_FRONTEND.md) | Frontend structure, state management, routing |
-| [API Reference](docs/API_REFERENCE.md) | Complete API endpoint documentation |
-| [Deployment (DigitalOcean)](docs/DEPLOYMENT_DIGITALOCEAN.md) | DigitalOcean App Platform deployment |
-| [Deployment (Docker)](docs/DEPLOYMENT_DOCKER.md) | Docker-based deployment |
-| [Security](docs/SECURITY.md) | Security implementation details |
-| [Backup & Recovery](docs/BACKUP.md) | Database backup procedures |
-| [Observability](docs/OBSERVABILITY.md) | Logging, monitoring, Sentry setup |
-
 ## Environment Variables
 
 See `.env.example` for a complete list of environment variables. Key configurations:
@@ -171,8 +154,6 @@ VITE_SENTRY_DSN=...           # Optional: error tracking
 ## Deployment
 
 ### DigitalOcean App Platform (Recommended)
-
-See [Deployment Guide](docs/DEPLOYMENT_DIGITALOCEAN.md) for detailed instructions.
 
 **Services required:**
 - PostgreSQL (managed database)
@@ -208,8 +189,6 @@ docker-compose -f docker-compose.prod.yml exec backend python manage.py migrate
 | `/api/favorites/` | GET/POST/DELETE | User favorites |
 | `/api/health/` | GET | Health check |
 
-See [API Reference](docs/API_REFERENCE.md) for complete documentation.
-
 ## Architecture
 
 ```
@@ -233,8 +212,6 @@ See [API Reference](docs/API_REFERENCE.md) for complete documentation.
 - Password hashing with Django's PBKDF2
 - Security headers (CSP, X-Frame-Options, etc.)
 - Input validation and XSS prevention
-
-See [Security Documentation](docs/SECURITY.md) for details.
 
 ## Contributing
 
