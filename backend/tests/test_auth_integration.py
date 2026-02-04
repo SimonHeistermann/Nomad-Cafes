@@ -318,7 +318,7 @@ class TestTokenRotationAndBlacklist:
         assert response.status_code == status.HTTP_200_OK
 
         # Get the new refresh token (if rotation is enabled)
-        new_refresh_token = response.cookies.get("refresh_token").value
+        _ = response.cookies.get("refresh_token").value
 
         # The tokens might be the same if rotation is disabled
         # But if rotation is enabled, they should be different

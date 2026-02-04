@@ -3,8 +3,7 @@ Tests for custom permission classes.
 """
 
 import pytest
-from unittest.mock import Mock, MagicMock
-from rest_framework.permissions import SAFE_METHODS
+from unittest.mock import Mock
 
 from apps.users.api.permissions import (
     IsAdminUser,

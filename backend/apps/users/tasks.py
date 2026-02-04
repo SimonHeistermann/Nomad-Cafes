@@ -17,7 +17,6 @@ from datetime import datetime
 
 from django.conf import settings
 from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 import django_rq
 
 logger = logging.getLogger(__name__)

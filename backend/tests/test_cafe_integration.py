@@ -11,7 +11,7 @@ import pytest
 from django.urls import reverse
 from rest_framework import status
 
-from apps.cafes.models import Cafe, Favorite
+from apps.cafes.models import Favorite
 from apps.reviews.models import Review
 
 
@@ -69,7 +69,7 @@ class TestCafeBrowsingFlow:
     def test_filter_by_features(self, api_client, cafe_factory, location):
         """Test filtering cafes by features."""
         # Create cafe with specific features
-        wifi_cafe = cafe_factory(
+        cafe_factory(
             name="Wifi Cafe",
             location=location,
             features=["fast_wifi", "power_outlets"],

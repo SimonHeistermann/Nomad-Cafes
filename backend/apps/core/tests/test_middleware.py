@@ -2,8 +2,7 @@
 Tests for custom middleware.
 """
 
-import pytest
-from unittest.mock import Mock, MagicMock, patch
+from unittest.mock import Mock, patch
 from django.http import JsonResponse
 from django.test import RequestFactory
 

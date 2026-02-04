@@ -12,7 +12,7 @@ import pytest
 from rest_framework.test import APIClient
 
 from apps.users.models import User
-from apps.users.factories import UserFactory, AdminUserFactory
+from apps.users.factories import UserFactory
 from apps.locations.factories import LocationFactory
 from apps.cafes.factories import CafeFactory
 

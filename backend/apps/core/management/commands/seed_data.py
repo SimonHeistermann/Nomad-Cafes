@@ -17,7 +17,7 @@ from faker import Faker
 from apps.users.models import User
 from apps.users.factories import UserFactory, AdminUserFactory, CafeOwnerFactory
 from apps.locations.models import Location
-from apps.locations.factories import LocationFactory, create_real_locations
+from apps.locations.factories import create_real_locations
 from apps.cafes.models import Cafe, Favorite
 from apps.cafes.factories import CafeFactory, FeaturedCafeFactory, CoworkingSpaceFactory
 from apps.reviews.models import Review
@@ -159,7 +159,7 @@ class Command(BaseCommand):
         for _ in range(20):
             UserFactory()
 
-        self.stdout.write(self.style.SUCCESS(f"  Created 20 additional users"))
+        self.stdout.write(self.style.SUCCESS("  Created 20 additional users"))
 
     def seed_users(self, count):
         """Create random users."""

@@ -3,7 +3,7 @@ Tests for JWT Cookie Authentication.
 """
 
 import pytest
-from unittest.mock import Mock, MagicMock, patch
+from unittest.mock import Mock
 from datetime import timedelta
 from django.http import HttpResponse
 

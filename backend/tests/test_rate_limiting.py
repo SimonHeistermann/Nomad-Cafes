@@ -7,7 +7,6 @@ to verify rate limits work correctly.
 
 import pytest
 from unittest.mock import patch
-from django.urls import reverse
 from rest_framework import status
 
 from apps.reviews.api.throttling import ReviewCreateThrottle

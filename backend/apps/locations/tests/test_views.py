@@ -73,14 +73,14 @@ class TestLocationEndpoints:
     def test_filter_by_has_cafes_true(self, api_client, location_factory):
         """Filter to only locations with cafes."""
         # Create location with cafes
-        location_with_cafes = location_factory(
+        location_factory(
             name={"en": "With Cafes"},
             slug="with-cafes",
             is_active=True,
             cafe_count=5,
         )
         # Create location without cafes
-        location_without_cafes = location_factory(
+        location_factory(
             name={"en": "Without Cafes"},
             slug="without-cafes",
             is_active=True,
@@ -119,13 +119,13 @@ class TestLocationEndpoints:
 
     def test_filter_by_is_featured(self, api_client, location_factory):
         """Filter to only featured locations."""
-        featured = location_factory(
+        location_factory(
             name={"en": "Featured"},
             slug="featured-location",
             is_active=True,
             is_featured=True,
         )
-        not_featured = location_factory(
+        location_factory(
             name={"en": "Not Featured"},
             slug="not-featured",
             is_active=True,

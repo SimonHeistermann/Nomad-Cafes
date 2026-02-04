@@ -225,11 +225,11 @@ class CafeFactory(DjangoModelFactory):
 
     @factory.lazy_attribute
     def image_url(self):
-        return f"https://source.unsplash.com/800x600/?cafe,coffee"
+        return "https://source.unsplash.com/800x600/?cafe,coffee"
 
     @factory.lazy_attribute
     def thumbnail_url(self):
-        return f"https://source.unsplash.com/400x300/?cafe,coffee"
+        return "https://source.unsplash.com/400x300/?cafe,coffee"
 
     @factory.lazy_attribute
     def gallery(self):

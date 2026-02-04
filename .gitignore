@@ -88,9 +88,9 @@ build/
 # Node.js (Root Level - if any root package.json exists accidentally)
 # -----------------------------------------------------------------------------
 node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+/package-lock.json
+/yarn.lock
+/pnpm-lock.yaml
 
 # -----------------------------------------------------------------------------
 # Python Virtual Environments

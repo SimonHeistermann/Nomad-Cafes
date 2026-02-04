@@ -2,8 +2,7 @@
 Tests for custom exception classes and handler.
 """
 
-import pytest
-from unittest.mock import Mock, MagicMock
+from unittest.mock import Mock
 from rest_framework.exceptions import (
     AuthenticationFailed,
     NotAuthenticated,
@@ -11,7 +10,6 @@ from rest_framework.exceptions import (
     ValidationError,
     Throttled,
 )
-from rest_framework.response import Response
 from django.http import Http404
 from django.core.exceptions import PermissionDenied as DjangoPermissionDenied
 

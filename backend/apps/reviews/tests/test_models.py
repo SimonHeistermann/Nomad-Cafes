@@ -5,7 +5,6 @@ Tests for Review model.
 import pytest
 
 from apps.cafes.models import Cafe
-from apps.locations.models import Location
 from apps.reviews.models import Review
 
 
