@@ -69,6 +69,7 @@ const CountUpNumber: React.FC<CountUpNumberProps> = ({
   // Reset animation if end value changes significantly
   useEffect(() => {
     if (end > 0 && hasAnimatedRef.current) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Syncing display with prop change
       setCount(end);
     }
   }, [end]);

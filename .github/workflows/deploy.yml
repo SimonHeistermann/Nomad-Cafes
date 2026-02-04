@@ -108,7 +108,6 @@ jobs:
           registry: ${{ secrets.CONTAINER_REGISTRY }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-        if: ${{ secrets.CONTAINER_REGISTRY != '' }}
         continue-on-error: true
 
       - name: Build and push Docker image
@@ -131,7 +130,7 @@ jobs:
     if: needs.setup.outputs.environment == 'staging'
     environment:
       name: staging
-      url: ${{ secrets.STAGING_URL }}
+      # url: Configure in GitHub Environment settings
 
     steps:
       - name: Checkout code
@@ -181,7 +180,7 @@ jobs:
     if: needs.setup.outputs.environment == 'production'
     environment:
       name: production
-      url: ${{ secrets.PROD_URL }}
+      # url: Configure in GitHub Environment settings
 
     steps:
       - name: Checkout code

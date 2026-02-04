@@ -60,6 +60,7 @@ export function useSearch({
 
     // If query is empty and no filters, clear results immediately
     if (!query.trim() && location === 'any' && category === 'all' && tag === 'any') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Early return to reset state
       setResults([]);
       setIsSearching(false);
       setHasSearched(false);

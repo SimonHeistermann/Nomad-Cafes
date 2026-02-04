@@ -82,11 +82,13 @@ const Explore: React.FC = () => {
   useEffect(() => {
     const locationParam = searchParams.get('location');
     const newLocation = locationParam || 'any';
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Syncing URL params to state
     setSearchLocation(newLocation);
 
     const queryParam = searchParams.get('q');
     const newQuery = queryParam || '';
     setSearchQuery(newQuery);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only sync on specific param changes
   }, [searchParams.get('location'), searchParams.get('q')]);
 
   // --- Fetch cafes from API ---
@@ -126,6 +128,7 @@ const Explore: React.FC = () => {
       isFirstFilterEffect.current = false;
       return;
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Reset page on filter change
     setPage(1);
   }, [category, priceRange, tag, sortBy, searchQuery, searchLocation]);
 

@@ -1,7 +1,7 @@
+import React from 'react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import { FavoritesProvider, useFavorites } from '../FavoritesContext';
-import { AuthProvider } from '../AuthContext';
 import { ToastProvider } from '../ToastContext';
 import { apiClient } from '@/api/client';
 import { BrowserRouter } from 'react-router-dom';
